@@ -1,0 +1,104 @@
+      @import '/home/yuki/.cache/hellwal/waybar-colors.css';
+
+      /* Reset all styles */
+      * {
+          border: none;
+          border-radius: 0;
+          min-height: 0;
+          margin: 0;
+          padding: 0;
+          box-shadow: none;
+          text-shadow: none;
+          icon-shadow: none;
+      }
+
+      /* The whole bar */
+      #waybar {
+          background: transparent;
+          color: @color15;
+          font-family: JetBrains Mono, Siji;
+          font-size: 11pt;
+	  font-weight: 300;
+      }
+
+window#waybar {
+  background-color: @background;
+  color: @foreground;
+  border-radius: 0px;
+  padding: 0px;
+  border-style: none;
+}
+
+      /* Each module */
+      #clock,
+      #pulseaudio,
+      #tray,
+      #mpris {
+          padding-left: 8pt;
+          padding-right: 8pt;
+      }
+
+      #workspaces {
+          background: @color15;
+          color: @color15;
+      }
+
+      /* Workspaces stuff */
+      #workspaces button {
+          /*font-weight: bold;*/
+          padding-left: 2pt;
+          padding-right: 2pt;
+          color: @color15;
+          background: @color8;
+      }
+
+      /* Inactive (on unfocused output) */
+      #workspaces button.visible {
+          color: @color15;
+          background: @color11;
+      }
+
+      /* Active (on focused output) */
+      #workspaces button.focused {
+          color: @color15;
+          background: @color11;
+      }
+
+      /* Contains an urgent window */
+      #workspaces button.urgent {
+          color: @color15;
+          background: @color11;
+      }
+
+      /* Style when cursor is on the button */
+      #workspaces button:hover {
+          background: @color0;
+          color: @color15;
+      }
+
+      #pulseaudio {
+          background: @color12;
+          color: @color15;
+      }
+
+      #custom-music {
+          background: @color12;
+          color: @color15;
+          font-family: maple mono;
+          font-size: 10pt;
+      }
+
+      #tray {
+          background: @color10
+      }
+
+      #clock.date {
+          background: @color9;
+          color: @color15;
+      }
+
+      #clock.time {
+          background: @color8;
+          color: @color15;
+      }
+

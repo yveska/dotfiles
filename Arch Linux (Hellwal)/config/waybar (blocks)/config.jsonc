@@ -1,0 +1,76 @@
+      {
+        "layer": "top",
+        "position": "top",
+	"height": 23,
+	"spacing": 4,
+
+        "modules-left": [
+	  "hyprland/workspaces",
+	  "custom/music",
+        ],
+
+        "modules-right": [
+	  "pulseaudio",
+	  "tray",
+	  "clock#date",
+	  "clock#time",
+        ],
+
+//        "hyprland/workspaces": {
+//         "format": "{icon}",
+//          "format-icons": {
+//            "1": "一",
+//            "2": "二",
+//            "3": "三",
+//            "4": "四",
+//            "5": "五",
+//            "6": "六",
+//            "7": "七",
+//            "8": "八",
+//            "9": "九",
+//            "10": "十",
+//          },
+//          },
+
+        "custom/music":{
+          "format": "  ♪ {} ",
+          "escape": true,
+          "interval": 1,
+          "tooltip": false,
+          "exec": "playerctl metadata --format='{{ title }}'",
+          "on-click": "playerctl play-pause",
+          "max-length": 50,
+        },
+
+        "clock#time": {
+          "interval": 10,
+          "format": "{:%H:%M}",
+          "tooltip": false,
+        },
+
+        "clock#date": {
+          "interval": 20,
+          "format": "{:%e %b %Y}",
+          "tooltip": false,
+        },
+
+        "pulseaudio": {
+        "scroll-step": 1, 
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "tooltip":"test",
+        "format-icons": [
+        "",
+        "",
+        " "
+        ],
+        "on-click": "pavucontrol",
+        "format-muted": " ",
+	"nospacing": 1   
+	},
+
+        "tray": {
+          "icon-size": 18,
+          "spacing": 10,
+        },
+      }

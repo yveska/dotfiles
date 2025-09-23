@@ -1,0 +1,33 @@
+{
+  "logo": {
+    "source": "~/.config/fastfetch/pantheon.txt"
+  },
+    "modules": [
+        "break",
+        "break",
+        "break",
+          "title",
+          "separator",
+          "os",
+          "kernel",
+          {"type": "wm", "format": "{pretty-name}"},
+          "uptime",
+		"break",
+		    "shell",
+        "terminal",
+        "packages",
+		    "break",
+        {
+            "type": "cpu",
+            "temp": true,
+    },    
+        {
+            "type": "gpu",
+            "key": "GPU"
+        },
+        "memory",
+        "disk",
+        "break",
+    "colors"
+    ]
+}

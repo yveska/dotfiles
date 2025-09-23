@@ -1,0 +1,20 @@
+theme = everforest
+
+bold-is-bright = true
+
+window-height = 18
+window-width = 76
+
+title = " "
+macos-titlebar-proxy-icon = hidden
+
+keybind = ctrl+alt+enter=ignore
+
+background-blur = true
+background-opacity = 0.75
+background-blur-radius = 40
+window-padding-x = 10
+window-padding-y = 10
+
+font-size = 13
+keybind = shift+enter=text:\n
