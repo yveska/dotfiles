@@ -1,0 +1,118 @@
+/* Colors */ 
+
+  @define-color fg #888071;
+  @define-color sepcolor #6B6863;
+  @define-color bg #090E13;
+  @define-color bordercolor #080D0F;
+  @define-color disabled #A5A5A5;
+  @define-color warning #938AA9;
+  @define-color alert #C13F42;
+  @define-color activegreen #7AA89F;
+  @define-color highlight #E6C384;
+
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 25px;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    text-shadow: none;
+    icon-shadow: none;
+  }
+
+ /* The whole bar */
+ 
+  #waybar {
+	  color: @fg;
+    background: @bg;          
+    font-family: Maple Mono NL;
+	  font-weight: 500;
+    font-size: 11.1pt;
+  }
+
+/* Listing modules */
+  #battery,
+  #clock,
+  #tray,
+  #mpris {
+    padding-left: 8pt;
+    padding-right: 8pt;
+  }
+
+/* Workspaces settings */
+
+  #workspaces button {
+    /*font-weight: bold;*/
+    padding-left: 2pt;
+    padding-right: 2pt;
+	  color: @fg;
+    background: @bg;
+  }
+
+  #workspaces button.active {
+    color: @activegreen;
+  }
+
+  #workspaces button.urgent {
+    color: @alert;
+  }
+     
+/* Module settings */
+
+  #pulseaudio {
+    background: @bg;
+    color: @activegreen;
+    padding-right: 6pt;
+  }
+
+  #custom-music {
+    color: @fg;
+    font-family: Maple Mono NL;
+    font-size: 10pt;
+    margin: 2pt;
+  }
+
+  #custom-vpn {
+    color: @activegreen;
+  }
+      
+  #custom-separator {
+    color: @activegreen;
+  }
+
+  #bluetooth {
+    color: @activegreen;
+  }
+
+  #tray {
+    background: @bg;
+  }
+
+  #tray menu {
+	  background-color: alpha(@bg, 0.9);
+	  padding: 4px;
+  }
+
+  #tray menu menuitem {
+    background-image: linear-gradient(to bottom, @bg 100%);
+	  margin: 4px;
+	  color: @highlight;
+    font-family: Maple Mono;
+    font-size: 10pt;
+	  border-radius: 4px;
+	  border-style: solid;
+	  border-color: @bordercolor;
+  }
+
+  #tray menu menuitem:hover {
+	  background-image: linear-gradient(to bottom, @fg 100%);
+	  color: @highlight;
+	  font-weight: bold;
+  }
+
+  #clock {
+	  color: @activegreen;
+	  margin: 2px;
+  }
+

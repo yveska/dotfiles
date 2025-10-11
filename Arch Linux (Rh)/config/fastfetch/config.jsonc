@@ -1,0 +1,69 @@
+{
+  "logo": {
+    "source": "~/.config/fastfetch/pantheon.txt"
+  },
+ "modules": [
+    "break",
+    "break",
+    "break",
+    {
+      "type": "custom",
+      "format": "             ",
+      "outputColor": "yellow"
+    },
+    {
+      "type": "custom",
+      "outputColor": "default",
+      "format": "┌─────────────────────────────────┐"
+    },
+    "break",
+    {
+      "type": "users",
+      "key": "   ",
+      "format": "Adam @ Arch",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "host",
+      "key": "   ",
+      "format": "{2}",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "os",
+      "key": "  󰣇 ",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "cpu",
+      "key": "   ",
+      "format": "{1}",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "packages",
+      "key": "   ",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "disk",
+      "key": "   ",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "memory",
+      "key": "   ",
+      "keyColor": "cyan"
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "└─────────────────────────────────┘"
+    },
+    {
+      "type": "colors",
+      "symbol": "square",
+      "paddingLeft": 10
+    }
+  ]
+}

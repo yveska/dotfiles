@@ -1,0 +1,23 @@
+#
+# ~/.bashrc
+#
+
+eval "$(starship init bash)"
+eval "$(zoxide init bash)"
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+export PATH="$HOME/.config/emacs/bin:$PATH"
+
+alias vim='nvim'
+alias ls='eza -1 --color=auto'
+alias grep='grep --color=auto'
+alias cd='z'
+alias yy='yazi'
+alias icat='kitten icat'
+PS1='[\u@\h \W]\$ '
+
+export EDITOR=nvim
+
+fastfetch

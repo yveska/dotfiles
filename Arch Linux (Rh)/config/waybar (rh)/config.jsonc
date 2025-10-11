@@ -1,0 +1,100 @@
+{
+// Bar properties
+    // "layer": "top"    
+       "height": 35, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    // "spacing": 4, // Gaps between modules (4px)
+    
+// Modules
+
+    "modules-left": [
+	      "hyprland/workspaces"
+    //  "custom/music",
+    ],
+    
+    "modules-center": [
+        "clock"
+    ],
+    
+    "modules-right": [
+//      "tray",
+        "custom/vpn",
+        "custom/separator",
+        "bluetooth",
+        "custom/separator",
+        "pulseaudio"
+    ],
+
+// Module properties
+
+  "hyprland/workspaces": {
+    "format": "●",
+    "on-click": "activate",
+    "on-scroll-up": "niri msg action focus-workspace-up",
+    "on-scroll-down": "niri msg action focus-workspace-down",
+    "smooth-scrolling-threshold": 2.0,
+  },
+
+  "bluetooth": {
+    "format": " {num_connections} {status}",
+    "format-disabled": "0 ▽",
+    "format-off": "0 ▼",
+    "format-on": "0 △",
+    "format-connected": "{num_connections} ▲",
+    "tooltip": true,
+    "tooltip-format": "⋊ Bluetooth\n━━━━━━━━━━━━━━━━━━\n• {controller_alias} ⟶ {controller_address}\n• {num_connections} connected",
+    "tooltip-format-connected": "⋊ Bluetooth\n━━━━━━━━━━━━━━━━━━\n• {controller_alias} ⟶ {controller_address}\n\n• {device_enumerate}",
+    "tooltip-format-enumerate-connected": "↳ {device_alias} [{device_address}]",
+    "tooltip-format-enumerate-connected-battery": "↳ {device_alias} [{device_address}] ⦚ {device_battery_percentage}%",
+    "on-click": "blueman-manager",
+  },
+
+  "custom/music":{
+    "format": "  ♪ {} ",
+    "escape": true,
+    "interval": 1,
+    "tooltip": false,
+    "exec": "playerctl metadata --format='{{ title }}'",
+    "on-click": "playerctl play-pause",
+    "max-length": 50,
+  },
+
+  "custom/separator": {
+    "format": " │ ",
+    "tooltip": false,
+  },
+
+  "custom/vpn": {
+    "interval": 5,
+    "exec": "pgrep -a openvpn|grep -q tun && echo '⊫' || echo '⊯'",
+    "tooltip": true,
+    "tooltip-format": "⊫ VPN\n━━━━━━━━━━━━━━━━━━\n⊫ ⟶ Active\n⊯ ⟶ Inactive",
+    "on-click": "kitty -e nmtui",
+  },
+
+  "tray": {
+    "icon-size": 17,
+    "spacing": 12,
+    "icons": {
+      "blueman": "bluetooth"
+    },
+  },
+
+  "clock": {
+    "format": "{:%d | %I:%M}"
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "tooltip":"test",
+    "format-icons": [
+      "",
+      "",
+      " "
+    ],
+   "on-click": "pavucontrol",
+    "format-muted": " ",
+    "nospacing": 1
+  }
+}
