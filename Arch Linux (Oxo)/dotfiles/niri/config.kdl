@@ -1,0 +1,234 @@
+// Input Devices //
+
+prefer-no-csd
+
+input {
+    mouse {
+         accel-speed -0.8
+    }
+    // Mouse moves to center of focused window
+    warp-mouse-to-focus
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+// Monitors //
+
+output "DP-1" {
+    mode "1920x1080@165.000"
+    scale 1
+    position x=0 y=0
+}
+
+output "DP-2" {
+    mode "1920x1080@165.000"
+    scale 1
+    position x=1920 y=0
+}
+
+hotkey-overlay {
+  skip-at-startup
+}
+
+// Window Layout //
+
+layout {
+    gaps 7
+    center-focused-column "never"
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+    default-column-width { proportion 1.0; }
+
+    // You can change how the focus ring looks.
+    focus-ring {
+        off
+        // How many logical pixels the ring extends out from the windows.
+        width 1
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+   }
+
+    // You can enable drop shadows for windows.
+    shadow {
+        // on
+        // Softness controls the shadow blur radius.
+        softness 30
+        // Spread expands the shadow.
+        spread 5
+        // Offset moves the shadow relative to the window.
+        offset x=0 y=5
+        // You can also change the shadow color and opacity.
+        color "#0007"
+    }
+    struts {
+        left 0
+        right 0
+        top 0
+        bottom 0
+    }
+}
+
+// Startup Apps //
+
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "nm-applet"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+spawn-sh-at-startup "swaybg -i ~/Pictures/Wallpapers/moon.jpg"
+
+
+environment {
+	DISPLAY ":0"
+}
+
+// Screenshots //
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// Animations //
+
+animations {
+    // off
+    slowdown 1.0
+}
+
+// Window rules for individual windows //
+
+// Open the Firefox picture-in-picture player as floating
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+window-rule {
+    open-maximized false
+}
+
+window-rule {
+    match app-id="steam"
+    open-fullscreen false
+}
+
+// Rounded corners
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+window-rule {
+  opacity 0.95
+}
+
+// Keybinds //
+
+binds {
+
+    // List of important hotkeys.
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    // Program binds
+    Mod+T { spawn "kitty"; }
+    Mod+B { spawn "zen-browser"; }
+    Mod+O { spawn "emacs"; }
+    Mod+E { spawn "nautilus"; }
+    Mod+Shift+R { spawn "readest"; }
+    Mod+A { spawn "sh" "-c" "killall fuzzel || fuzzel"; }
+    Mod+V { spawn "sh" "-c" "cliphist list | fuzzel --dmenu --with-nth 2 | cliphist decode | wl-copy"; }
+
+    // Volume Controls
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+    XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    XF86AudioPlay { spawn "playerctl" "play-pause"; }
+    XF86AudioPause { spawn "playerctl" "play-pause"; }
+    XF86AudioNext { spawn "playerctl" "next"; }
+    XF86AudioPrev { spawn "playerctl" "previous"; }
+    
+    // Overview (Also accessible through top-left hot corner)
+    Mod+Shift+O repeat=false { toggle-overview; }
+
+   // Window manipulation binds
+    Mod+Q { close-window; }
+
+    Mod+H     { focus-column-left; }
+    Mod+J     { focus-window-down; }
+    Mod+K     { focus-window-up; }
+    Mod+L     { focus-column-right; }
+
+    Mod+Ctrl+H     { move-column-left; }
+    Mod+Ctrl+J     { move-window-down; }
+    Mod+Ctrl+K     { move-window-up; }
+    Mod+Ctrl+L     { move-column-right; }
+
+    Mod+Shift+H     { focus-monitor-left; }
+    Mod+Shift+J     { focus-monitor-down; }
+    Mod+Shift+K     { focus-monitor-up; }
+    Mod+Shift+L     { focus-monitor-right; }
+
+    Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
+    Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+
+    Mod+U              { focus-workspace-down; }
+    Mod+I              { focus-workspace-up; }
+    Mod+Ctrl+U         { move-column-to-workspace-down; }
+    Mod+Ctrl+I         { move-column-to-workspace-up; }
+
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+
+    Mod+Shift+WheelScrollDown      { focus-column-right; }
+    Mod+Shift+WheelScrollUp        { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+
+    Mod+Comma  { consume-window-into-column; }
+    Mod+Period { expel-window-from-column; }
+
+    Mod+R { switch-preset-column-width; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+Ctrl+F { expand-column-to-available-width; }
+
+    Mod+C { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
+
+    // Finer Mod Adjustments
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+
+    // Move the focused window between the floating and the tiling layout.
+    Mod+Shift+Space       { toggle-window-floating; }
+
+    Print { screenshot; }
+    Mod+Print { screenshot-screen; }
+    Mod+Shift+Print { screenshot-window; }
+
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    Ctrl+Alt+Delete { quit; }
+}
