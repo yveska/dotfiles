@@ -22,7 +22,7 @@ TERMINAL=(kitty starship zoxide fzf fd eza bat btop fastfetch gdu tree-sitter-cl
 
 APPS=(thunar gvfs ntfs-3g imv mpv qbittorrent spotify-launcher readest rmpc zathura zathura-cb zathura-pdf-mupdf zenity proton-vpn-gtk-app syncthing)
 
-UTILS=(waybar dunst libnotify cliphist slurp grim hyprpicker awww)
+UTILS=(waybar pavucontrol dunst libnotify cliphist slurp grim hyprpicker awww)
 
 DEV=(git npm emacs luarocks luacheck lua-jsregexp hunspell hunspell-en_us)
 
@@ -40,12 +40,12 @@ echo "Step 1: Installing Native Packages..."
 ALL_NATIVE=("${SYSTEM[@]}" "${HARDWARE[@]}" "${NETWORK[@]}" "${DESKTOP[@]}" "${TERMINAL[@]}" "${APPS[@]}" "${UTILS[@]}" "${DEV[@]}" "${FONTS[@]}")
 sudo pacman -Syu --needed --noconfirm "${ALL_NATIVE[@]}"
 
-# --- 4. AUR INSTALL ---
-echo "Step 3: Installing AUR Packages..."
+# --- 3. AUR INSTALL ---
+echo "Step 2: Installing AUR Packages..."
 yay -S --needed --noconfirm "${AUR_PKGS[@]}"
 
-# --- 5. DOTFILES DEPLOYMENT (STOW) ---
-echo "Step 4: Symlinking Dotfiles..."
+# --- 4. DOTFILES DEPLOYMENT (STOW) ---
+echo "Step 3: Symlinking Dotfiles..."
 if [ -d "$DOTFILES_DIR" ]; then
 	# Remove default bashrc to avoid Stow conflicts
 	[ -f "$HOME/.bashrc" ] && rm "$HOME/.bashrc"
@@ -59,8 +59,8 @@ else
 	echo "✘ Error: $DOTFILES_DIR not found!"
 fi
 
-# --- 6. SDDM THEME SETUP ---
-echo "Step 5: Configuring SDDM Theme..."
+# --- 5. SDDM THEME SETUP ---
+echo "Step 4: Configuring SDDM Theme..."
 THEME_NAME="nier-automata" # Ensure this matches your folder name in dotfiles
 if [ -d "$DOTFILES_DIR/sddm-theme" ]; then
 	sudo mkdir -p "/usr/share/sddm/themes/$THEME_NAME"
@@ -71,16 +71,16 @@ Current=$THEME_NAME
 EOF"
 fi
 
-# --- 7. EDITOR INITIALIZATION ---
-echo "Step 6: Initializing Doom Emacs & Neovim..."
+# --- 6. EDITOR INITIALIZATION ---
+echo "Step 5: Initializing Doom Emacs & Neovim..."
 # Doom Emacs
 if [ ! -d "$HOME/.config/emacs" ]; then
 	git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 	~/.config/emacs/bin/doom install
 fi
 
-# --- 8. SERVICES ---
-echo "Step 7: Enabling Services..."
+# --- 7. SERVICES ---
+echo "Step 6: Enabling Services..."
 for s in "${SERVICES[@]}"; do
 	sudo systemctl enable "$s"
 done
