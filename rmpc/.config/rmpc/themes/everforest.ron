@@ -1,0 +1,186 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+
+(
+    default_album_art_path: None,
+    show_song_table_header: true,
+    draw_borders: true,
+    browser_column_widths: [20, 30, 60],
+    symbols: (song: "󰎈 ", dir: "󰉋 ", marker: " ", ellipsis: "..."),
+
+    text_color: "#a6b79c",  // foreground
+
+    tab_bar: (
+        enabled: true,
+        active_style: (bg: "#1b2a2d", fg: "#c6e2a6", modifiers: "Bold"),
+        inactive_style: (fg: "#4a5a56", modifiers: ""),
+    ),
+
+    highlighted_item_style: (fg: "#c6e2a6", modifiers: "Bold"),
+    current_item_style: (fg: "#c6e2a6", bg: "#1b2a2d", modifiers: "Bold"),
+
+    borders_style: (fg: "#4a5a56", modifiers: "Bold"),
+    highlight_border_style: (fg: "#4a5a56"),
+
+    progress_bar: (
+        symbols: ["┄", "┅", "━"],
+        track_style: (fg: "#1b2a2d"),
+        elapsed_style: (fg: "#a8c48b"),   // sage
+        thumb_style: (fg: "#c6e2a6"),     // bright sage
+    ),
+
+    scrollbar: (
+        symbols: ["", "", "", ""],
+        track_style: (fg: "#4a5a56"),
+        ends_style: (fg: "#4a5a56"),
+        thumb_style: (fg: "#a8c48b"),
+    ),
+
+    browser_song_format: [
+        (
+            kind: Group([
+                (kind: Property(Track)),
+                (kind: Text(" ")),
+            ])
+        ),
+        (
+            kind: Group([
+                (kind: Property(Title)),
+                (kind: Text(" - ")),
+                (kind: Property(Artist)),
+            ]),
+            default: (kind: Property(Filename)),
+        ),
+    ],
+
+    song_table_format: [
+        (
+            prop: (
+                kind: Property(Title),
+                style: (fg: "#6f9f8f"),  // jade
+                highlighted_item_style: (fg: "#0f1a1c", modifiers: "Bold"),
+                default: (kind: Property(Filename), style: (fg: "#4a5a56")),
+            ),
+            width: "50%",
+        ),
+        (
+            prop: (
+                kind: Property(Artist),
+                style: (fg: "#a8c48b"),  // sage
+                default: (kind: Text("Unknown Artist"), style: (fg: "#4f7c82")),
+            ),
+            width: "45%",
+        ),
+        (
+            prop: (
+                kind: Property(Duration),
+                style: (fg: "#b7c46a"),  // yellow-green highlight
+            ),
+            width: "10%",
+            alignment: Right,
+        ),
+    ],
+
+    header: (
+        rows: [
+            (
+                left: [
+                    (kind: Text("["), style: (fg: "#d3e2c7", modifiers: "Bold")),
+                    (kind: Property(Status(State)), style: (fg: "#d3e2c7", modifiers: "Bold")),
+                    (kind: Text("]"), style: (fg: "#d3e2c7", modifiers: "Bold")),
+                ],
+                center: [
+                    (
+                        kind: Property(Song(Title)),
+                        style: (fg: "#a6b79c", modifiers: "Bold"),
+                        default: (
+                            kind: Property(Song(Filename)),
+                            style: (fg: "#a6b79c", modifiers: "Bold")
+                        ),
+                    ),
+                ],
+                right: [
+                    (kind: Text("Vol: "), style: (fg: "#b7c46a", modifiers: "Bold")),
+                    (kind: Property(Status(Volume)), style: (fg: "#b7c46a", modifiers: "Bold")),
+                    (kind: Text("% "), style: (fg: "#b7c46a", modifiers: "Bold")),
+                ],
+            ),
+            (
+                left: [
+                    (kind: Property(Status(Elapsed)), style: (fg: "#a6b79c")),
+                    (kind: Text("/"), style: (fg: "#4a5a56")),
+                    (kind: Property(Status(Duration)), style: (fg: "#a6b79c")),
+                ],
+                center: [
+                    (
+                        kind: Property(Song(Artist)),
+                        style: (fg: "#a8c48b", modifiers: "Bold"),
+                        default: (
+                            kind: Text("Unknown Artist"),
+                            style: (fg: "#6f9f8f", modifiers: "Bold")
+                        ),
+                    ),
+                ],
+                right: [
+                    (
+                        kind: Property(Widget(States(
+                            active_style: (fg: "#c6e2a6", modifiers: "Bold"),
+                            separator_style: (fg: "#4a5a56"),
+                        ))),
+                        style: (fg: "#4a5a56"),
+                    ),
+                ],
+            ),
+        ],
+    ),
+
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                size: "4",
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (
+                            size: "100%",
+                            pane: Split(
+                                direction: Vertical,
+                                panes: [
+                                    (
+                                        size: "4",
+                                        borders: "ALL",
+                                        pane: Pane(Header),
+                                    ),
+                                ],
+                            ),
+                        ),
+                    ],
+                ),
+            ),
+            (
+                size: "3",
+                pane: Pane(Tabs),
+            ),
+            (
+                size: "100%",
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (
+                            size: "100%",
+                            borders: "NONE",
+                            pane: Pane(TabContent),
+                        ),
+                    ],
+                ),
+            ),
+            (
+                size: "3",
+                borders: "TOP | BOTTOM",
+                pane: Pane(ProgressBar),
+            ),
+        ],
+    ),
+)

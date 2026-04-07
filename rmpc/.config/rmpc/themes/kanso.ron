@@ -1,0 +1,187 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+
+(
+    default_album_art_path: None,
+    show_song_table_header: true,
+    draw_borders: true,
+    browser_column_widths: [20, 30, 60],
+    symbols: (song: "󰎈 ", dir: "󰉋 ", marker: " ", ellipsis: "..."),
+
+    text_color: "#888071",  // @fg
+
+    tab_bar: (
+        enabled: true,
+        active_style: (bg: "#080D0F", fg: "#E6C384", modifiers: "Bold"), // @bordercolor, @highlight
+        inactive_style: (fg: "#6B6863", modifiers: ""), // @sepcolor
+    ),
+
+    highlighted_item_style: (fg: "#E6C384", modifiers: "Bold"), // @highlight
+    current_item_style: (fg: "#E6C384", bg: "#080D0F", modifiers: "Bold"), // @highlight, @bordercolor
+
+    borders_style: (fg: "#6B6863", modifiers: "Bold"), // @sepcolor
+    highlight_border_style: (fg: "#888071"), // @fg
+
+    progress_bar: (
+        symbols: ["┄", "┅", "━"],
+        track_style: (fg: "#080D0F"), // @bordercolor
+        elapsed_style: (fg: "#7AA89F"),   // @activegreen
+        thumb_style: (fg: "#E6C384"),     // @highlight
+    ),
+
+    scrollbar: (
+        symbols: ["", "", "", ""],
+        track_style: (fg: "#6B6863"), // @sepcolor
+        ends_style: (fg: "#6B6863"), // @sepcolor
+        thumb_style: (fg: "#7AA89F"), // @activegreen
+    ),
+
+    browser_song_format: [
+        (
+            kind: Group([
+                (kind: Property(Track)),
+                (kind: Text(" ")),
+            ])
+        ),
+        (
+            kind: Group([
+                (kind: Property(Title)),
+                (kind: Text(" - ")),
+                (kind: Property(Artist)),
+            ]),
+            default: (kind: Property(Filename)),
+        ),
+    ],
+
+    song_table_format: [
+        (
+            prop: (
+                kind: Property(Title),
+                style: (fg: "#7AA89F"),  // @activegreen
+                highlighted_item_style: (fg: "#090E13", modifiers: "Bold"), // @bg
+                default: (kind: Property(Filename), style: (fg: "#6B6863")), // @sepcolor
+            ),
+            width: "50%",
+        ),
+        (
+            prop: (
+                kind: Property(Artist),
+                style: (fg: "#888071"),  // @fg
+                default: (kind: Text("Unknown Artist"), style: (fg: "#938AA9")), // @warning
+            ),
+            width: "45%",
+        ),
+        (
+            prop: (
+                kind: Property(Duration),
+                style: (fg: "#E6C384"),  // @highlight
+            ),
+            width: "10%",
+            alignment: Right,
+        ),
+    ],
+
+    header: (
+        rows: [
+            (
+                left: [
+                    (kind: Text("["), style: (fg: "#888071", modifiers: "Bold")), // @fg
+                    (kind: Property(Status(State)), style: (fg: "#E6C384", modifiers: "Bold")), // @highlight
+                    (kind: Text("]"), style: (fg: "#888071", modifiers: "Bold")), // @fg
+                ],
+                center: [
+                    (
+                        kind: Property(Song(Title)),
+                        style: (fg: "#E6C384", modifiers: "Bold"), // @highlight
+                        default: (
+                            kind: Property(Song(Filename)),
+                            style: (fg: "#888071", modifiers: "Bold") // @fg
+                        ),
+                    ),
+                ],
+                right: [
+                    (kind: Text("Vol: "), style: (fg: "#7AA89F", modifiers: "Bold")), // @activegreen
+                    (kind: Property(Status(Volume)), style: (fg: "#7AA89F", modifiers: "Bold")), // @activegreen
+                    (kind: Text("% "), style: (fg: "#7AA89F", modifiers: "Bold")), // @activegreen
+                ],
+            ),
+            (
+                left: [
+                    (kind: Property(Status(Elapsed)), style: (fg: "#888071")), // @fg
+                    (kind: Text("/"), style: (fg: "#6B6863")), // @sepcolor
+                    (kind: Property(Status(Duration)), style: (fg: "#888071")), // @fg
+                ],
+                center: [
+                    (
+                        kind: Property(Song(Artist)),
+                        style: (fg: "#7AA89F", modifiers: "Bold"), // @activegreen
+                        default: (
+                            kind: Text("Unknown Artist"),
+                            style: (fg: "#7AA89F", modifiers: "Bold") // @activegreen
+                        ),
+                    ),
+                ],
+                right: [
+                    (
+                        kind: Property(Widget(States(
+                            active_style: (fg: "#E6C384", modifiers: "Bold"), // @highlight
+                            separator_style: (fg: "#6B6863"), // @sepcolor
+                        ))),
+                        style: (fg: "#6B6863"), // @sepcolor
+                    ),
+                ],
+            ),
+        ],
+    ),
+    
+    // Layout preserved from original everforest.ron
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                size: "4",
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (
+                            size: "100%",
+                            pane: Split(
+                                direction: Vertical,
+                                panes: [
+                                    (
+                                        size: "4",
+                                        borders: "ALL",
+                                        pane: Pane(Header),
+                                    ),
+                                ],
+                            ),
+                        ),
+                    ],
+                ),
+            ),
+            (
+                size: "3",
+                pane: Pane(Tabs),
+            ),
+            (
+                size: "100%",
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (
+                            size: "100%",
+                            borders: "NONE",
+                            pane: Pane(TabContent),
+                        ),
+                    ],
+                ),
+            ),
+            (
+                size: "3",
+                borders: "TOP | BOTTOM",
+                pane: Pane(ProgressBar),
+            ),
+        ],
+    ),
+)

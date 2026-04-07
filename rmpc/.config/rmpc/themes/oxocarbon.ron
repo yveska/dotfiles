@@ -1,0 +1,160 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+
+(
+    default_album_art_path: None,
+    show_song_table_header: true,
+    draw_borders: true,
+    browser_column_widths: [20, 30, 60],
+    symbols: (song: "󰎈 ", dir: "󰉋 ", marker: " ", ellipsis: "..."),
+    text_color: "#C7CAD9",  // base05 - default white-ish text
+    tab_bar: (
+        enabled: true,
+        active_style: (bg: "#1B1F2B", fg: "#ff7eb6", modifiers: "Bold"),  // base01 bg + pink
+        inactive_style: (fg: "#7885B2", modifiers: ""),  // base04 grayish-blue
+    ),
+    highlighted_item_style: (fg: "#82cfff", modifiers: "Bold"),  // blue accent
+    current_item_style: (fg: "#51CBFF", bg: "#1B1F2B", modifiers: "Bold"),  // cyan base0C
+    borders_style: (fg: "#515974", modifiers: "Bold"),  // base03 subtle gray
+    highlight_border_style: (fg: "#515974"),  // changed from pink to subtle gray to remove pink border in playlists etc.
+    progress_bar: (
+        symbols: ["┄", "┅", "━"],
+        track_style: (fg: "#262B40"),  // base02 dark blue-gray
+        elapsed_style: (fg: "#ff7eb6"),  // pink accent
+        thumb_style: (fg: "#82cfff"),  // blue accent
+    ),
+    scrollbar: (
+        symbols: ["", "", "", ""],
+        track_style: (fg: "#515974"),  // base03
+        ends_style: (fg: "#515974"),  // base03
+        thumb_style: (fg: "#ff7eb6"),  // pink accent
+    ),
+    browser_song_format: [
+        (
+            kind: Group([
+                (kind: Property(Track)),
+                (kind: Text(" ")),
+            ])
+        ),
+        (
+            kind: Group([
+                (kind: Property(Title)),
+                (kind: Text(" - ")),
+                (kind: Property(Artist)),
+            ]),
+            default: (kind: Property(Filename)),
+        ),
+    ],
+    song_table_format: [
+        (
+            prop: (kind: Property(Title), style: (fg: "#82cfff"),  // blue accent
+                highlighted_item_style: (fg: "#0B0E14", modifiers: "Bold"),  // base00 background
+                default: (kind: Property(Filename), style: (fg: "#515974")),  // base03 gray
+            ),
+            width: "50%",
+        ),
+        (
+            prop: (kind: Property(Artist), style: (fg: "#ff7eb6"),  // pink accent
+                default: (kind: Text("Unknown Artist"), style: (fg: "#7885B2")),  // base04 muted
+            ),
+            width: "45%",
+        ),
+        (
+            prop: (kind: Property(Duration), style: (fg: "#ff7eb6")),  // pink accent
+            width: "10%",
+            alignment: Right,
+        ),
+    ],
+    header: (
+        rows: [
+            (
+                left: [
+                    (kind: Text("["), style: (fg: "#F5F6FA", modifiers: "Bold")),  // base07 white
+                    (kind: Property(Status(State)), style: (fg: "#F5F6FA", modifiers: "Bold")),
+                    (kind: Text("]"), style: (fg: "#F5F6FA", modifiers: "Bold")),
+                ],
+                center: [
+                    (kind: Property(Song(Title)), style: (fg: "#C7CAD9", modifiers: "Bold"),  // base05
+                        default: (kind: Property(Song(Filename)), style: (fg: "#C7CAD9", modifiers: "Bold")),
+                    ),
+                ],
+                right: [
+                    (kind: Text("Vol: "), style: (fg: "#ff7eb6", modifiers: "Bold")),  // pink accent
+                    (kind: Property(Status(Volume)), style: (fg: "#ff7eb6", modifiers: "Bold")),
+                    (kind: Text("% "), style: (fg: "#ff7eb6", modifiers: "Bold")),
+                ],
+            ),
+            (
+                left: [
+                    (kind: Property(Status(Elapsed)), style: (fg: "#C7CAD9")),  // base05
+                    (kind: Text("/"), style: (fg: "#515974")),  // base03 gray
+                    (kind: Property(Status(Duration)), style: (fg: "#C7CAD9")),
+                ],
+                center: [
+                    (kind: Property(Song(Artist)), style: (fg: "#ff7eb6", modifiers: "Bold"),  // pink accent
+                        default: (kind: Text("Unknown Artist"), style: (fg: "#82cfff", modifiers: "Bold")),  // blue accent
+                    ),
+                ],
+                right: [
+                    (
+                        kind: Property(Widget(States(
+                            active_style: (fg: "#82cfff", modifiers: "Bold"),  // blue accent
+                            separator_style: (fg: "#7885B2"),
+                        ))),
+                        style: (fg: "#7885B2"),
+                    ),
+                ],
+            ),
+        ],
+    ),
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                size: "4",
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (
+                            size: "100%",
+                            pane: Split(
+                                direction: Vertical,
+                                panes: [
+                                    (
+                                        size: "4",
+                                        borders: "ALL",
+                                        pane: Pane(Header),
+                                    ),
+                                ],
+                            ),
+                        ),
+                    ],
+                ),
+            ),
+            (
+                size: "3",
+                pane: Pane(Tabs),
+            ),
+            (
+                size: "100%",
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (
+                            size: "100%",
+                            borders: "NONE",
+                            pane: Pane(TabContent),
+                        ),
+                    ],
+                ),
+            ),
+            (
+                size: "3",
+                borders: "TOP | BOTTOM",
+                pane: Pane(ProgressBar),
+            ),
+        ],
+    ),
+)
+

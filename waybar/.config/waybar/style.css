@@ -1,0 +1,112 @@
+/* Original Color Palette */
+@define-color fg #888071;
+@define-color sepcolor #6B6863;
+@define-color bg #090E13;
+@define-color bordercolor #080D0F;
+@define-color disabled #A5A5A5;
+@define-color warning #938AA9;
+@define-color alert #C13F42;
+@define-color activegreen #7AA89F;
+@define-color highlight #E6C384;
+
+/* Global Reset */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font"; 
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: @bg; 
+    color: @fg;
+    border-bottom: 2px solid @bordercolor; 
+}
+
+/* --- WORKSPACES (MDR SEVERANCE STYLE) --- */
+#workspaces {
+    padding: 0 5px;
+}
+
+#workspaces button {
+    color: @fg; 
+    padding: 0 10px;
+    margin: 0;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+#workspaces button.active {
+    color: @activegreen; 
+    font-weight: 800;
+}
+
+#workspaces button.urgent {
+    color: @alert;
+}
+
+/* Severance UI Branding */
+#custom-sep {
+    color: @sepcolor;
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+/* --- CENTER CLOCK --- */
+#clock {
+    color: @activegreen;
+    font-weight: 700;
+}
+
+/* --- RIGHT SIDE MODULES --- */
+#custom-vpn,
+#pulseaudio,
+#cpu,
+#group-drawer {
+    padding: 0 15px;
+    border-left: 1px solid @sepcolor; /* Clean vertical lines */
+}
+
+/* Specific Status Colors */
+#custom-vpn.connected {
+    color: @activegreen;
+}
+
+#pulseaudio {
+    color: @activegreen;
+}
+
+#cpu {
+    color: @activegreen;
+}
+
+/* Tray & Retractable Drawer */
+#group-drawer {
+    margin-right: 15px; 
+}
+
+#custom-tray-handle {
+    padding: 0 15px;
+    color: @fg;
+}
+
+#custom-tray-handle:hover {
+    color: @highlight;
+    background: rgba(136, 128, 113, 0.05);
+}
+
+#tray {
+    padding-left: 10px;
+}
+
+/* Tooltips */
+tooltip {
+  background-color: @bg;
+  color: #f2f2f2;
+  border: 1px solid @bordercolor;
+}
+
+tooltip label {
+  padding: 5px;
+}

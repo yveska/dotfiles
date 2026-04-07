@@ -1,0 +1,14 @@
+# Ignore Emacs/Vim temporary files
+*~
+\#*\#
+/.emacs.d/.local/
+.netrwhist
+undo/
+
+# Ignore Python/Node caches
+__pycache__/
+node_modules/
+
+# Ignore thumbnails and sockets
+.thumbnails/
+*.sock
