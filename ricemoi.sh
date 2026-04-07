@@ -6,7 +6,7 @@ DOTFILES_DIR="$HOME/dotfiles"
 
 CONFIGS=(bash doom hypr kitty dunst fastfetch waybar mpd mpv nvim rmpc starship gtk-3.0 gtk-4.0)
 
-SERVICES=(NetworkManager bluetooth sddm syncthing)
+SERVICES=(NetworkManager bluetooth sddm)
 
 # Native Packages
 
@@ -16,11 +16,11 @@ HARDWARE=(nvidia-open-dkms libva-nvidia-driver bluez bluez-utils blueman pipewir
 
 NETWORK=(networkmanager network-manager-applet iwd wireless_tools wpa_supplicant wget)
 
-DESKTOP=(hyprland uwsm xdg-desktop-portal-hyprland xdg-utils hyprpolkitagent polkit-kde-agent qt5-wayland qt6-wayland qt5-graphicaleffects qt5-quickcontrols2 qt5-svg qqc2-desktop-style sddm)
+DESKTOP=(hyprland uwsm xdg-desktop-portal-hyprland xdg-utils hyprpolkitagent polkit-kde-agent qt5-wayland qt6-wayland qt5-graphicaleffects qt5-quickcontrols2 qt5-svg qt6-5compat qt6-multimedia qt6-multimedia-ffmpeg gvfs ntfs-3g  qqc2-desktop-style sddm)
 
 TERMINAL=(kitty starship zoxide fzf fd eza bat btop fastfetch gdu tree-sitter-cli unzip)
 
-APPS=(dolphin imv mpv qbittorrent spotify-launcher zathura zathura-cb zathura-pdf-mupdf zenity proton-vpn-gtk-app syncthing)
+APPS=(thunar imv mpv qbittorrent spotify-launcher readest rmpc zathura zathura-cb zathura-pdf-mupdf zenity proton-vpn-gtk-app syncthing)
 
 UTILS=(waybar dunst libnotify cliphist slurp grim hyprpicker awww)
 
@@ -30,31 +30,15 @@ FONTS=(inter-font otf-atkinson-hyperlegible ttf-jetbrains-mono-nerd ttf-nerd-fon
 
 # AUR Packages
 
-AUR_PKGS=(waypaper hyprshade localsend-bin neovim-git vicinae-bin zen-browser-bin readest rmpc)
+AUR_PKGS=(hyprshade localsend-bin vicinae-bin zen-browser-bin )
 
 set -e
 echo "󰣇 Starting Full System Deployment..."
-
-# --- CLONE DOTFILES ---
-if [ ! -d "$DOTFILES_DIR" ]; then
-	echo "󰚺 Dotfiles not found. Cloning from GitHub..."
-	git clone https://github.com/username/repo-name.git "$DOTFILES_DIR"
-else
-	echo "✔ Dotfiles directory already exists."
-fi
 
 # --- 2. NATIVE INSTALL ---
 echo "Step 1: Installing Native Packages..."
 ALL_NATIVE=("${SYSTEM[@]}" "${HARDWARE[@]}" "${NETWORK[@]}" "${DESKTOP[@]}" "${TERMINAL[@]}" "${APPS[@]}" "${UTILS[@]}" "${DEV[@]}" "${FONTS[@]}")
 sudo pacman -Syu --needed --noconfirm "${ALL_NATIVE[@]}"
-
-# --- 3. AUR HELPER (YAY) ---
-if ! command -v yay &>/dev/null; then
-	echo "Step 2: Building yay..."
-	sudo rm -rf /tmp/yay
-	git clone https://aur.archlinux.org/yay.git /tmp/yay
-	cd /tmp/yay && makepkg -si --noconfirm && cd -
-fi
 
 # --- 4. AUR INSTALL ---
 echo "Step 3: Installing AUR Packages..."
@@ -92,7 +76,7 @@ echo "Step 6: Initializing Doom Emacs & Neovim..."
 # Doom Emacs
 if [ ! -d "$HOME/.config/emacs" ]; then
 	git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-	~/.config/emacs/bin/doom install --env --fonts --force
+	~/.config/emacs/bin/doom install
 fi
 
 # --- 8. SERVICES ---
