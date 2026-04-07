@@ -16,11 +16,11 @@ HARDWARE=(nvidia-open-dkms libva-nvidia-driver bluez bluez-utils blueman pipewir
 
 NETWORK=(networkmanager network-manager-applet iwd wireless_tools wpa_supplicant wget)
 
-DESKTOP=(hyprland uwsm xdg-desktop-portal-hyprland xdg-utils hyprpolkitagent polkit-kde-agent qt5-wayland qt6-wayland qt5-graphicaleffects qt5-quickcontrols2 qt5-svg qt6-5compat qt6-multimedia qt6-multimedia-ffmpeg gvfs ntfs-3g  qqc2-desktop-style sddm)
+DESKTOP=(hyprland uwsm xdg-desktop-portal-hyprland xdg-utils hyprpolkitagent polkit-kde-agent qt5-wayland qt6-wayland qt5-graphicaleffects qt5-quickcontrols2 qt5-svg qt6-5compat qt6-multimedia qt6-multimedia-ffmpeg  qqc2-desktop-style sddm)
 
 TERMINAL=(kitty starship zoxide fzf fd eza bat btop fastfetch gdu tree-sitter-cli unzip)
 
-APPS=(thunar imv mpv qbittorrent spotify-launcher readest rmpc zathura zathura-cb zathura-pdf-mupdf zenity proton-vpn-gtk-app syncthing)
+APPS=(thunar gvfs ntfs-3g imv mpv qbittorrent spotify-launcher readest rmpc zathura zathura-cb zathura-pdf-mupdf zenity proton-vpn-gtk-app syncthing)
 
 UTILS=(waybar dunst libnotify cliphist slurp grim hyprpicker awww)
 
