@@ -13,6 +13,7 @@ alias lsa='eza -la --group-directories-first --icons=auto'
 alias grep='grep --color=auto'
 alias ff='nvim $(fzf -m)'
 alias vim='nvim'
+alias dotsync='cd ~/dotfiles && git add . && git commit -m "update: $(date +%Y-%m-%d_%H:%M)" && git push && cd -'
 
 eval "$(zoxide init bash)"
 alias cd='zd'
