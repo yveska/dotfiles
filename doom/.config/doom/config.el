@@ -188,3 +188,5 @@
 (map! :leader
       :desc "Mode line" "t m" #'global-hide-mode-line-mode
       :desc "Org capture" "X" #'org-capture)
+(map! :n "j" #'evil-next-visual-line
+      :n "k" #'evil-previous-visual-line)
