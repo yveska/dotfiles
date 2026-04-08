@@ -28,7 +28,7 @@ vim.opt.hlsearch = true -- highlight search matches
 vim.opt.incsearch = true -- show matches as you type
 
 vim.opt.signcolumn = "yes" -- always show a sign column
--- vim.opt.colorcolumn = "100" -- show a column at 100 position chars
+vim.opt.colorcolumn = "100" -- show a column at 100 position chars
 vim.opt.showmatch = true -- highlights matching brackets
 vim.opt.cmdheight = 1 -- single line commmand line
 vim.opt.completeopt = "menuone,noinsert,noselect" --completion options
@@ -38,7 +38,7 @@ vim.opt.pumblend = 10 -- popup menu transparency
 vim.opt.winblend = 0 -- floating window transparency
 vim.opt.conceallevel = 0 -- do not hide markup
 vim.opt.concealcursor = "" -- do not hide cursorline in markup
--- vim.opt.lazyredraw = true -- do not redraw during macros
+vim.opt.lazyredraw = true -- do not redraw during macros
 vim.opt.synmaxcol = 300 -- syntax highlighting limit
 vim.opt.fillchars = { eob = " " } -- hide "~" on empty lines
 
@@ -85,6 +85,7 @@ vim.opt.maxmempattern = 20000 -- increase max memory
 
 --- Keymaps ---
 
+-- leader keys
 vim.g.mapleader = " " -- space for leader
 vim.g.maplocalleader = " " -- space for localleader
 
@@ -92,51 +93,58 @@ vim.g.maplocalleader = " " -- space for localleader
 vim.keymap.set("n", "j", function()
 	return vim.v.count == 0 and "gj" or "j"
 end, { expr = true, silent = true, desc = "Down (wrap-aware)" })
+
 vim.keymap.set("n", "k", function()
 	return vim.v.count == 0 and "gk" or "k"
 end, { expr = true, silent = true, desc = "Up (wrap-aware)" })
 
+-- highighting
 vim.keymap.set("n", "<leader>c", ":nohlsearch<CR>", { desc = "Clear search highlights" })
-
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result (centered)" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
+
+-- navigation
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
+vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
 
 vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without yanking" })
 vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yanking" })
 
-vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
+-- panes
+vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Split window vertically" })
+vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc = "Split window horizontally" })
 
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
-vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Split window vertically" })
-vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc = "Split window horizontally" })
 vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
 vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
+-- manipulating lines
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 
+-- indentation
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
-vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
-
-vim.keymap.set("n", "<leader>pa", function() -- show file path
+-- show file path and copy
+vim.keymap.set("n", "<leader>pa", function()
 	local path = vim.fn.expand("%:p")
 	vim.fn.setreg("+", path)
 	print("file:", path)
 end, { desc = "Copy full file path" })
 
+-- toggle diagnostics
 vim.keymap.set("n", "<leader>td", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle diagnostics" })
@@ -201,7 +209,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
--- Highlight yanked tex --
+-- Highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup,
 	callback = function()
@@ -209,7 +217,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- Return to last cursor position --
+-- Return to last cursor position
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = augroup,
 	desc = "Restore last cursor position",
@@ -230,7 +238,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
--- Wrap, linebreak and spellcheck on markdown and text files --
+-- Wrap, linebreak and spellcheck on markdown and text files
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = { "markdown", "text", "gitcommit", "org" },
@@ -245,14 +253,16 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- add plugins --
 vim.pack.add({
-	"https://www.github.com/lewis6991/gitsigns.nvim",
-	"https://www.github.com/echasnovski/mini.nvim",
-	"https://www.github.com/ibhagwan/fzf-lua",
-	"https://github.com/nvim-tree/nvim-web-devicons",
-	"https://www.github.com/nvim-tree/nvim-tree.lua",
-	"https://github.com/webhooked/kanso.nvim",
-	"https://github.com/nvim-lualine/lualine.nvim",
-	"https://github.com/folke/which-key.nvim",
+  -- appearance
+  "https://www.github.com/webhooked/kanso.nvim",
+  "https://www.github.com/nvim-lualine/lualine.nvim",
+  "https://www.github.com/nvim-tree/nvim-web-devicons",
+  "https://www.github.com/lewis6991/gitsigns.nvim",
+  -- utility
+  "https://www.github.com/folke/which-key.nvim",
+  "https://www.github.com/nvim-tree/nvim-tree.lua",
+  "https://www.github.com/ibhagwan/fzf-lua",
+  "https://www.github.com/echasnovski/mini.nvim",
 	{
 		src = "https://github.com/nvim-treesitter/nvim-treesitter",
 		branch = "main",
@@ -260,13 +270,13 @@ vim.pack.add({
 	},
 	-- Language Server Protocols
 	"https://www.github.com/neovim/nvim-lspconfig",
-	"https://github.com/mason-org/mason.nvim",
-	"https://github.com/creativenull/efmls-configs-nvim",
+	"https://www.github.com/mason-org/mason.nvim",
+	"https://www.github.com/creativenull/efmls-configs-nvim",
 	{
-		src = "https://github.com/saghen/blink.cmp",
+		src = "https://www.github.com/saghen/blink.cmp",
 		version = vim.version.range("1.*"),
 	},
-	"https://github.com/L3MON4D3/LuaSnip",
+	"https://www.github.com/L3MON4D3/LuaSnip",
 })
 
 -- function to install plugins --
@@ -275,15 +285,17 @@ local function packadd(name)
 end
 
 -- install plugins --
-packadd("nvim-treesitter")
-packadd("gitsigns.nvim")
-packadd("mini.nvim")
-packadd("nvim-web-devicons")
-packadd("lualine.nvim")
-packadd("fzf-lua")
+-- appearance
 packadd("kanso.nvim")
-packadd("nvim-tree.lua")
+packadd("lualine.nvim")
+packadd("nvim-web-devicons")
+packadd("gitsigns.nvim")
+-- utility
 packadd("which-key.nvim")
+packadd("nvim-tree.lua")
+packadd("fzf-lua")
+packadd("mini.nvim")
+packadd("nvim-treesitter")
 -- LSP
 packadd("nvim-lspconfig")
 packadd("mason.nvim")
@@ -293,6 +305,7 @@ packadd("LuaSnip")
 
 --- Plugin Configs ---
 
+-- treesitter
 local setup_treesitter = function()
 	local treesitter = require("nvim-treesitter")
 	treesitter.setup({})
@@ -344,6 +357,7 @@ end
 
 setup_treesitter()
 
+-- nvim-tree
 require("nvim-tree").setup({
 	view = {
 		width = 35,
@@ -366,6 +380,7 @@ vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = "#2a2a2a", bg = "none" })
 vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
 
+-- fzf-lua
 require("fzf-lua").setup({})
 
 vim.keymap.set("n", "<leader>ff", function()
@@ -387,6 +402,7 @@ vim.keymap.set("n", "<leader>fX", function()
 	require("fzf-lua").diagnostics_workspace()
 end, { desc = "FZF Diagnostics Workspace" })
 
+-- mini
 require("mini.ai").setup({})
 require("mini.comment").setup({})
 require("mini.move").setup({})
@@ -399,6 +415,7 @@ require("mini.bufremove").setup({})
 require("mini.notify").setup({})
 require("mini.icons").setup({})
 
+-- gitsigns
 require("gitsigns").setup({
 	signs = {
 		add = { text = "\u{2590}" }, -- ▏
@@ -412,6 +429,7 @@ require("gitsigns").setup({
 	current_line_blame = false,
 })
 
+-- mason
 require("mason").setup({})
 
 vim.keymap.set("n", "]h", function()
