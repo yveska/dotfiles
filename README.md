@@ -1,6 +1,6 @@
-My Current Arch Rice!
+My Current Arch Dotfiles!
 
-On clean install, ensure you install git manually and run the script outside of chroot. 
+On clean install, ensure you install yay manually and run the script outside of chroot. 
 
 Once install is finished, ~/dotfiles/ will be in read-only. Run "sudo chown -R $USER:$USER dotfiles" to give yourself access
 
