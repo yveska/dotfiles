@@ -20,7 +20,7 @@ DESKTOP=(hyprland uwsm xdg-desktop-portal-hyprland xdg-utils hyprpolkitagent pol
 
 TERMINAL=(kitty starship zoxide fzf fd eza bat btop fastfetch gdu tree-sitter-cli unzip)
 
-APPS=(thunar gvfs ntfs-3g imv mpv qbittorrent spotify-launcher readest zathura zathura-cb zathura-pdf-mupdf zenity proton-vpn-gtk-app syncthing)
+APPS=(thunar gvfs ntfs-3g tumbler imv mpv qbittorrent spotify-launcher readest zathura zathura-cb zathura-pdf-mupdf zenity proton-vpn-gtk-app syncthing)
 
 UTILS=(waybar pavucontrol dunst libnotify cliphist slurp grim hyprpicker awww)
 
