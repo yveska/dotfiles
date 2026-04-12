@@ -1,26 +1,16 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 30,
+  "height": 34, // Increased height for better visibility
   "spacing": 0, 
 
-  "modules-left": ["hyprland/workspaces", "custom/sep"],
+  "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["custom/vpn", "pulseaudio", "cpu", "group/drawer"],
+  "modules-right": ["custom/vpn", "pulseaudio", "cpu", "tray"],
 
   "hyprland/workspaces": {
     "format": "{name}",
-    "on-click": "activate",
-    "all-outputs": true,
-    "sort-by-number": true,
-    "format-icons": {
-      "default": "u"
-    }
-  },
-
-  "custom/sep": {
-    "format": "> < >",
-    "tooltip": false
+    "on-click": "activate"
   },
 
   "custom/vpn": {
@@ -28,45 +18,24 @@
       "exec": "nmcli -t -f name,device connection show --active | grep -q 'proton' && echo '{\"text\": \"vpn\", \"class\": \"connected\"}' || echo '{\"text\": \"vpn\", \"class\": \"disconnected\"}'",
       "return-type": "json",
       "tooltip": true,
-      "exec-tooltip": "nmcli -t -f name,device connection show --active | grep -q 'proton' && echo 'Connected' || echo 'Disconnected'", 
+      "exec-tooltip": "nmcli -t -f name,device connection show --active | grep -q 'proton' && echo 'Connected' || echo 'Disconnected'"
   },
 
   "clock": {
-    "format": "{:%H:%M  %A, %d}" 
+    "format": "{:%I:%M %d}" 
   },
 
   "cpu": {
-    "format": "cpu: {usage}%",
-    "on-click": "kitty -e btop",
-    "tooltip": false 
+    "format": "CPU {usage}%"
   },
 
   "pulseaudio": {
-    "format": "vol: {volume}%",
-    "on-click": "pavucontrol",
-    "tooltip": false 
+    "format": "VOL {volume}%",
+    "on-click": "pavucontrol"
   },
-
-  "group/drawer": {
-    "orientation": "horizontal",
-    "drawer": {
-        "transition-duration": 500,
-        "children-class": "tray-child",
-        "transition-left-to-right": false
-    },
-    "modules": [
-        "custom/tray-handle",
-        "tray"
-    ] 
-  },
-
-  "custom/tray-handle": {
-    "format": "󰍜",
-    "tooltip": false   
-},
 
   "tray": {
-    "icon-size": 16,
-    "spacing": 10 
+    "icon-size": 18, // Scaled icons up for legibility
+    "spacing": 10
   }
 }

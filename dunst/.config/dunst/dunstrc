@@ -1,46 +1,50 @@
 [global]
-font = "JetBrains Mono Nerd Font 10"
-geometry = "320x90-10+10"
-transparency = 8
-frame_width = 2
-separator_height = 2
-sticky_history = yes
-shrink = true
-padding = 12
-corner_radius = 6  # if your compositor supports it
+### Appearance
+# Absolute sharp corners to match the structural GTK look
+corner_radius = 0 
+font = JetBrains Mono Nerd Font 10
+width = 320
+height = 90
+offset = 15x15
+origin = top-right
 
-# ===========================
-# Low Urgency Notifications
-# ===========================
+# Borders and Padding
+# 1px border matches the thin outlines in your screenshot
+frame_width = 1
+# Deep slate for the border, slightly lighter than background
+frame_color = "#3d424a" 
+separator_color = "#3d424a"
+padding = 12
+horizontal_padding = 15
+text_icon_padding = 15
+
+# Alignment
+text_alignment = left
+vertical_alignment = center
+
+# Transparency and Animation
+transparency = 0
+separator_height = 1
+
 [urgency_low]
-background = "#0f1a1c"        # kitty background
-foreground = "#a6b79c"        # kitty foreground
-frame_color = "#1b2a2d"       # kitty color0, subtle border
-separator_color = "#2a3b3f"   # kitty selection_background
+# Darkest slate background sampled from the UI panel
+background = "#1a1d21"
+# Muted secondary grey 
+foreground = "#8b919a"
 timeout = 5
 
-# ===========================
-# Normal Urgency Notifications
-# ===========================
 [urgency_normal]
-background = "#2a3b3f"        # kitty selection_background, deeper
-foreground = "#d3e2c7"        # bright white (#15)
-frame_color = "#4f7c82"       # kitty color4 (blue-teal)
-separator_color = "#6f9ea3"   # kitty color12 (bright blue-teal)
+# Deep panel background 
+background = "#1f2228"
+# Bright white/parchment for high readability 
+foreground = "#f0efeb"
+# Accent color matching the slider handles in your screenshot
+frame_color = "#515761"
 timeout = 10
 
-# ===========================
-# Critical Notifications
-# ===========================
 [urgency_critical]
-background = "#9f6f6c"        # kitty color1 (muted moss-rose)
-foreground = "#d3e2c7"        # bright white
-frame_color = "#b07c78"       # kitty color9 (bright red)
-separator_color = "#b07c78"   # match frame
+# Muted rose-grey for critical without breaking the palette 
+background = "#CDACAC"
+foreground = "#1a1d21"
+frame_color = "#f5a191"
 timeout = 0
-
-# ===========================
-# Icons
-# ===========================
-[icon_theme]
-icon_size = 32

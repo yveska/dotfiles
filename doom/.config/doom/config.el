@@ -1,8 +1,8 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; --- PERSONAL INFO ---
-(setq user-full-name "Adam Arshad"
-      user-mail-address "adamarshad.school@gmail.com")
+(setq user-full-name "Jin"
+      user-mail-address "Jin@me.com")
 
 ;; --- PERFORMANCE & SYSTEM ---
 (setq gc-cons-threshold (* 256 1024 1024)
@@ -15,7 +15,7 @@
       ispell-program-name "enchant-2")
 
 ;; --- VISUALS & THEME ---
-(setq doom-theme 'kanso)
+(setq doom-theme 'mono)
 (setq display-line-numbers-type nil)
 
 ;; Margins
@@ -147,7 +147,7 @@
 
 ;; --- DASHBOARD (DRAINED ASCII) ---
 (remove-hook! '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu #'doom-dashboard-widget-footer)
-(custom-set-faces! '(doom-dashboard-banner :foreground "#7AA89F" :weight bold))
+(custom-set-faces! '(doom-dashboard-banner :foreground "#C1C0D4" :weight bold))
 
 (defun ascii ()
   (let* ((banner '("

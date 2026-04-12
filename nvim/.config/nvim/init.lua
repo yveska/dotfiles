@@ -40,7 +40,8 @@ vim.opt.conceallevel = 0 -- do not hide markup
 vim.opt.concealcursor = "" -- do not hide cursorline in markup
 vim.opt.lazyredraw = true -- do not redraw during macros
 vim.opt.synmaxcol = 300 -- syntax highlighting limit
-vim.opt.fillchars = { eob = " " } -- hide "~" on empty lines
+vim.opt.fillchars = { eob = " ", horiz = "━", horizup = "┻", horizdown = "┳", vert = "┃", vertleft = "┫", vertright = "┣", verthoriz = "╋" } -- hide "~" on empty lines
+vim.opt.laststatus = 3  -- Pins the statusline to the bottom of the screen
 
 vim.opt.backup = false -- do not create a backup file
 vim.opt.writebackup = false -- do not write to a backup file
@@ -255,9 +256,12 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.pack.add({
   -- appearance
   "https://www.github.com/webhooked/kanso.nvim",
+  "https://github.com/mellow-theme/mellow.nvim",
+  "https://github.com/wnkz/monoglow.nvim",
   "https://www.github.com/nvim-lualine/lualine.nvim",
   "https://www.github.com/nvim-tree/nvim-web-devicons",
   "https://www.github.com/lewis6991/gitsigns.nvim",
+  "https://www.github.com/norcalli/nvim-colorizer.lua",
   -- utility
   "https://www.github.com/folke/which-key.nvim",
   "https://www.github.com/nvim-tree/nvim-tree.lua",
@@ -287,9 +291,12 @@ end
 -- install plugins --
 -- appearance
 packadd("kanso.nvim")
+packadd("mellow.nvim")
+packadd("monoglow.nvim")
 packadd("lualine.nvim")
 packadd("nvim-web-devicons")
 packadd("gitsigns.nvim")
+packadd("nvim-colorizer.lua")
 -- utility
 packadd("which-key.nvim")
 packadd("nvim-tree.lua")
@@ -700,14 +707,14 @@ vim.lsp.enable({
 
 vim.opt.termguicolors = true
 
-require("kanso").setup({
-	bold = true,
-	italics = true,
-	transparent = false,
-	theme = "zen", -- Options: "zen", "mist", "ink", "pearl"
-})
+--require("mellow").setup({
+--	bold = true,
+--	italics = true,
+--	transparent = false,
+--	theme = "zen", -- Options: "zen", "mist", "ink", "pearl"
+--})
 
-vim.cmd("colorscheme kanso")
+vim.cmd("colorscheme monoglow-void")
 
 local function set_transparent() -- set UI component to transparent
 	local groups = {
@@ -735,7 +742,7 @@ set_transparent()
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = "ayu_dark",
+		theme = "auto",
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = {
@@ -786,6 +793,44 @@ require("lualine").setup({
 	inactive_winbar = {},
 	extensions = {},
 })
+
+-- Attaches to every FileType mode
+require 'colorizer'.setup()
+
+-- Attach to certain Filetypes, add special configuration for `html`
+-- Use `background` for everything else.
+require 'colorizer'.setup {
+  'css';
+  'javascript';
+  html = {
+    mode = 'foreground';
+  }
+}
+
+-- Use the `default_options` as the second parameter, which uses
+-- `foreground` for every mode. This is the inverse of the previous
+-- setup configuration.
+require 'colorizer'.setup({
+  'css';
+  'javascript';
+  html = { mode = 'background' };
+}, { mode = 'foreground' })
+
+-- Use the `default_options` as the second parameter, which uses
+-- `foreground` for every mode. This is the inverse of the previous
+-- setup configuration.
+require 'colorizer'.setup {
+  '*'; -- Highlight all files, but customize some others.
+  css = { rgb_fn = true; }; -- Enable parsing rgb(...) functions in css.
+  html = { names = false; } -- Disable parsing "names" like Blue or Gray
+}
+
+-- Exclude some filetypes from highlighting by using `!`
+require 'colorizer'.setup {
+  '*'; -- Highlight all files, but customize some others.
+  '!vim'; -- Exclude vim from highlighting.
+  -- Exclusion Only makes sense if '*' is specified!
+  }
 
 --- Floating Terminal ---
 

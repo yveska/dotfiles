@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=GTK Theme
+Name=0.Mono
+Comment=0.Mono colored theme.
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+Name=0.Mono
+GtkTheme=0.Mono
+

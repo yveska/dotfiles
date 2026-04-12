@@ -1,0 +1,178 @@
+.xfce4-panel {
+        border: 1px solid rgb(186, 188, 200);
+        border-radius: 1px;
+        border-width: 2px;
+        margin: 4px;
+	padding: 4px;
+        font-family: 'Terminus (TTF)';
+        font-size: 12px;
+        opacity: 1;
+} 
+
+/*Tasklist*/
+.xfce4-panel .tasklist .toggle {
+        background: #23231F;
+	color: #f9f9f9;
+	border-color: #BABCCC;
+        border-width: 2px;
+        border-radius: 1px;
+	margin-top: 5px;
+	margin-bottom: 2px;
+        margin-right: 5px;
+        margin-left: 2px;
+        margin: 2px;
+	padding: 1px;
+}
+
+.xfce4-panel .tasklist .hover {
+        background: #BABCCC;
+	color: #8E7D64;
+	border-color: #BABCCC;
+        border-width: 2px;
+        border-radius: 1px;
+	margin-top: 5px;
+	margin-bottom: 2px;
+        margin-right: 5px;
+        margin-left: 2px;
+        margin: 2px;
+	padding: 1px;
+}
+
+.xfce4-panel .tasklist .toggle:checked {
+	background: #BABCCC;
+	color: #0B2E30;
+	border-color: #BABCCC;
+        border-width: 2px;
+        border-radius: 1px;
+        margin-top: 3px;
+        margin-left: 2px;
+        margin-right: 2px;
+        margin: 2px;
+	padding: 1px;
+}
+
+/*Workspace Switcher*/
+#pager-14 #xfce-panel-toggle-button {
+        background: #23231F;
+	color: #BABCCC;
+	border-color: #BABCCC;
+        border-width: 2px;
+        border-radius: 1px;
+	margin: 3px;
+	padding: 3px;
+}
+
+#pager-14 #xfce-panel-toggle-button:checked {
+	background: #BABCCC;
+	color: #23231F;
+	border-color: #BABCCC;
+        border-width: 2px;
+        border-radius: 1px;
+        margin: 3px;
+	padding: 3px;
+}
+
+#pager-14 #xfce-panel-toggle-button:hover {
+        background: #BABCCC;
+	color: #BABCCC;
+	border-color: #BABCCC;
+        border-width: 2px;
+        border-radius: 1px;
+	margin: 3px;
+	padding: 3px;
+}
+
+/*Sound*/
+#pulseaudio-button {
+        background: #23231F;
+	color: #BABCCC;
+	margin: 4px;
+	padding: 1px;
+}
+
+#pulseaudio-button:checked {
+        background: #BABCCC;
+	color: #BABCCC;
+	margin: 4px;
+	padding: 1px;
+}
+
+#pulseaudio-button:hover {
+        background: #BABCCC;
+	color: #BABCCC;
+	margin: 4px;
+	padding: 1px;
+}
+
+/*Clock*/
+#clock-button {
+        background: #23231F;
+	color: #BABCCC;
+	border-color: #BABCCC;
+        border-width: 2px;
+        border-radius: 1px;
+	margin: 2px;
+	padding: 2px;
+}
+
+#clock-button:checked {
+        background: #BABCCC;
+	color: #23231F;
+	border-color: #BABCCC;
+        border-width: 2px;
+        border-radius: 1px;
+	margin: 2px;
+	padding: 2px;
+	font-size: 12px;
+}
+
+
+#clock-button:hover {
+        background: #BABCCC; opacity: 1;
+	color: #BABCCC;
+	border-color: #BABCCC;
+        border-width: 2px;
+        border-radius: 1px;
+	margin: 2px;
+	padding: 2px;
+	font-size: 12px;
+}
+
+/*Apllications*/
+#applicationmenu-button  {
+        background: #0B2E30;
+	color: #D44835;
+	border-color: #D44835;
+        border-width: 0px;
+        margin-top: 4px;
+	margin-bottom: 1px;
+        margin-right: 0px;
+        margin-left: 4px;
+        margin: 4px;
+	padding: 4px;
+        font-family: 'Terminus (TTF)';
+        font-size: 12px;
+	opacity: 1;
+}
+
+/*Status Tray*/
+#systray-6-button {
+        background: #23231F;
+	color: #BABCCC;
+	margin: 4px;
+	padding: 1px;
+}
+
+#systray-6-button:checked {
+        background: #BABCCC;
+	color: #BABCCC;
+	margin: 4px;
+	padding: 1px;
+}
+
+#systray-6-button:hover {
+        background: #BABCCC;
+	color: #BABCCC;
+	margin: 4px;
+	padding: 1px;
+}

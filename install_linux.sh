@@ -4,7 +4,7 @@
 
 DOTFILES_DIR="$HOME/dotfiles"
 
-CONFIGS=(bash doom hypr kitty dunst fastfetch waybar mpd mpv nvim rmpc starship gtk-3.0 gtk-4.0)
+CONFIGS=(bash doom dunst fastfetch gtk-3.0 gtk-4.0 hypr icons kitty nvim starship themes waybar)
 
 SERVICES=(NetworkManager bluetooth sddm)
 
@@ -20,9 +20,9 @@ DESKTOP=(hyprland uwsm xdg-desktop-portal-hyprland xdg-utils hyprpolkitagent pol
 
 TERMINAL=(kitty starship zoxide fzf fd eza bat btop fastfetch gdu tree-sitter-cli unzip)
 
-APPS=(thunar gvfs ntfs-3g tumbler imv mpv qbittorrent spotify-launcher readest zenity proton-vpn-gtk-app syncthing)
+APPS=(nemo nemo-image-converter nemo-fileroller gvfs ntfs-3g tumbler imv mpv qbittorrent spotify-launcher readest zenity proton-vpn-gtk-app syncthing)
 
-UTILS=(waybar pavucontrol dunst libnotify cliphist slurp grim hyprpicker awww)
+UTILS=(waybar pavucontrol dunst libnotify cliphist nwg-look slurp grim hyprpicker awww)
 
 DEV=(git npm emacs luarocks luacheck lua-jsregexp hunspell hunspell-en_us)
 
@@ -59,16 +59,27 @@ else
 	echo "✘ Error: $DOTFILES_DIR not found!"
 fi
 
-# --- 5. SDDM THEME SETUP ---
-echo "Step 4: Configuring SDDM Theme..."
-THEME_NAME="nier-automata" # Ensure this matches your folder name in dotfiles
+chmod +x "$HOME"
+chmod +x "$DOTFILES_DIR"
+
+# --- 5. SDDM THEME SETUP (STOW VERSION) ---
+echo "Step 4: Symlinking SDDM Theme with Stow..."
+THEME_NAME="nier-automata"
+
 if [ -d "$DOTFILES_DIR/sddm-theme" ]; then
-	sudo mkdir -p "/usr/share/sddm/themes/$THEME_NAME"
-	sudo cp -r "$DOTFILES_DIR/sddm-theme/." "/usr/share/sddm/themes/$THEME_NAME"
-	sudo bash -c "cat > /etc/sddm.conf <<EOF
+    # 1. Create the system directory if it doesn't exist
+    sudo mkdir -p /usr/share/sddm/themes
+    
+    # 2. Use Stow with the --target (-t) flag. 
+    # This tells Stow to link INTO /usr/share/sddm/themes instead of $HOME.
+    sudo stow -d "$DOTFILES_DIR" -t /usr/share/sddm/themes sddm-theme
+    
+    # 3. Apply the config
+    sudo bash -c "cat > /etc/sddm.conf <<EOF
 [Theme]
 Current=$THEME_NAME
 EOF"
+    echo "  ✔ SDDM theme stowed to system."
 fi
 
 # --- 6. EDITOR INITIALIZATION ---
