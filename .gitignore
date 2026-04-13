@@ -23,5 +23,7 @@ node_modules/
 
 # Ignore music folders specifically within mpd or other configs
 **/music/
+**/mpd/.config/mpd/music/
+**/mpd/.config/mpd/playlists/
 **/playlists/*.m3u
 **/playlists/*.m3u8
