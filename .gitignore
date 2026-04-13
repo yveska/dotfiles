@@ -12,3 +12,16 @@ node_modules/
 # Ignore thumbnails and sockets
 .thumbnails/
 *.sock
+
+# Ignore music files
+*.mp3
+*.flac
+*.wav
+*.m4a
+*.ogg
+*.opus
+
+# Ignore music folders specifically within mpd or other configs
+**/music/
+**/playlists/*.m3u
+**/playlists/*.m3u8
