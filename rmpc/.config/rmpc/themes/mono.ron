@@ -1,0 +1,188 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+
+(
+    default_album_art_path: None,
+    show_song_table_header: true,
+    draw_borders: true,
+    browser_column_widths: [20, 30, 60],
+    symbols: (song: "󰎈 ", dir: "󰉋 ", marker: " ", ellipsis: "..."),
+
+    /* Primary Compline Colors */
+    text_color: "#f0efeb",  // @fg: warm parchment [cite: 1]
+
+    tab_bar: (
+        enabled: true,
+        active_style: (bg: "#22262b", fg: "#f0efeb", modifiers: "Bold"), // @bg-alt and @fg [cite: 1]
+        inactive_style: (fg: "#8b919a", modifiers: ""), // @base7 / muted [cite: 1]
+    ),
+
+    highlighted_item_style: (fg: "#f0efeb", modifiers: "Bold"), 
+    current_item_style: (fg: "#f0efeb", bg: "#22262b", modifiers: "Bold"), 
+
+    /* Structural Elements */
+    borders_style: (fg: "#3d424a", modifiers: "Bold"), // @base4: structural slate [cite: 1]
+    highlight_border_style: (fg: "#8b919a"), // @base7: active border [cite: 1]
+
+    progress_bar: (
+        symbols: ["┄", "┅", "━"],
+        track_style: (fg: "#1a1d21"), // @bg [cite: 1]
+        elapsed_style: (fg: "#b4bcc4"),   // @blue: cool steel-grey [cite: 1]
+        thumb_style: (fg: "#f0efeb"),     // @fg [cite: 1]
+    ),
+
+    scrollbar: (
+        symbols: ["", "", "", ""],
+        track_style: (fg: "#3d424a"), // @base4 [cite: 1]
+        ends_style: (fg: "#3d424a"), 
+        thumb_style: (fg: "#b4bcc4"), // @blue [cite: 1]
+    ),
+
+    browser_song_format: [
+        (
+            kind: Group([
+                (kind: Property(Track)),
+                (kind: Text(" ")),
+            ])
+        ),
+        (
+            kind: Group([
+                (kind: Property(Title)),
+                (kind: Text(" - ")),
+                (kind: Property(Artist)),
+            ]),
+            default: (kind: Property(Filename)),
+        ),
+    ],
+
+    song_table_format: [
+        (
+            prop: (
+                kind: Property(Title),
+                style: (fg: "#b4bcc4"),  // @blue [cite: 1]
+                highlighted_item_style: (fg: "#1a1d21", modifiers: "Bold"), // @bg [cite: 1]
+                default: (kind: Property(Filename), style: (fg: "#8b919a")), // @muted [cite: 1]
+            ),
+            width: "50%",
+        ),
+        (
+            prop: (
+                kind: Property(Artist),
+                style: (fg: "#f0efeb"),  // @fg [cite: 1]
+                default: (kind: Text("Unknown Artist"), style: (fg: "#CDACAC")), // @red [cite: 1]
+            ),
+            width: "45%",
+        ),
+        (
+            prop: (
+                kind: Property(Duration),
+                style: (fg: "#d4ccb4"),  // @yellow: warm parchment accent [cite: 1]
+            ),
+            width: "10%",
+            alignment: Right,
+        ),
+    ],
+
+    header: (
+        rows: [
+            (
+                left: [
+                    (kind: Text("["), style: (fg: "#f0efeb", modifiers: "Bold")),
+                    (kind: Property(Status(State)), style: (fg: "#d4ccb4", modifiers: "Bold")), // @yellow [cite: 1]
+                    (kind: Text("]"), style: (fg: "#f0efeb", modifiers: "Bold")),
+                ],
+                center: [
+                    (
+                        kind: Property(Song(Title)),
+                        style: (fg: "#f0efeb", modifiers: "Bold"),
+                        default: (
+                            kind: Property(Song(Filename)),
+                            style: (fg: "#f0efeb", modifiers: "Bold")
+                        ),
+                    ),
+                ],
+                right: [
+                    (kind: Text("Vol: "), style: (fg: "#b4bcc4", modifiers: "Bold")), // @blue [cite: 1]
+                    (kind: Property(Status(Volume)), style: (fg: "#b4bcc4", modifiers: "Bold")),
+                    (kind: Text("% "), style: (fg: "#b4bcc4", modifiers: "Bold")),
+                ],
+            ),
+            (
+                left: [
+                    (kind: Property(Status(Elapsed)), style: (fg: "#f0efeb")),
+                    (kind: Text("/"), style: (fg: "#3d424a")), // @base4 separator [cite: 1]
+                    (kind: Property(Status(Duration)), style: (fg: "#f0efeb")),
+                ],
+                center: [
+                    (
+                        kind: Property(Song(Artist)),
+                        style: (fg: "#b4bcc4", modifiers: "Bold"), // @blue [cite: 1]
+                        default: (
+                            kind: Text("Unknown Artist"),
+                            style: (fg: "#b4bcc4", modifiers: "Bold")
+                        ),
+                    ),
+                ],
+                right: [
+                    (
+                        kind: Property(Widget(States(
+                            active_style: (fg: "#d4ccb4", modifiers: "Bold"), // @yellow [cite: 1]
+                            separator_style: (fg: "#3d424a"), // @base4 [cite: 1]
+                        ))),
+                        style: (fg: "#8b919a"), // @muted [cite: 1]
+                    ),
+                ],
+            ),
+        ],
+    ),
+    
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                size: "4",
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (
+                            size: "100%",
+                            pane: Split(
+                                direction: Vertical,
+                                panes: [
+                                    (
+                                        size: "4",
+                                        borders: "ALL",
+                                        pane: Pane(Header),
+                                    ),
+                                ],
+                            ),
+                        ),
+                    ],
+                ),
+            ),
+            (
+                size: "3",
+                pane: Pane(Tabs),
+            ),
+            (
+                size: "100%",
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (
+                            size: "100%",
+                            borders: "NONE",
+                            pane: Pane(TabContent),
+                        ),
+                    ],
+                ),
+            ),
+            (
+                size: "3",
+                borders: "TOP | BOTTOM",
+                pane: Pane(ProgressBar),
+            ),
+        ],
+    ),
+)
