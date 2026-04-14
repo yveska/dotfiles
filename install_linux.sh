@@ -22,7 +22,7 @@ TERMINAL=(kitty starship zoxide fzf fd eza bat btop fastfetch gdu tree-sitter-cl
 
 APPS=(nemo nemo-image-converter nemo-fileroller gvfs ntfs-3g tumbler imv mpv qbittorrent spotify-launcher readest zenity proton-vpn-gtk-app syncthing)
 
-UTILS=(waybar pavucontrol dunst libnotify cliphist nwg-look slurp grim hyprpicker awww)
+UTILS=(waybar pavucontrol dunst libnotify cliphist nwg-look slurp grim hyprpicker awww kid3)
 
 DEV=(git npm emacs luarocks luacheck lua-jsregexp hunspell hunspell-en_us)
 

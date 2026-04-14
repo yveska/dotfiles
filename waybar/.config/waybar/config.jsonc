@@ -26,7 +26,8 @@
   },
 
   "cpu": {
-    "format": "CPU {usage}%"
+    "format": "CPU {usage}%",
+    "on-click": "kitty -e btop"
   },
 
   "pulseaudio": {
