@@ -6,7 +6,7 @@ DOTFILES_DIR="$HOME/dotfiles"
 
 CONFIGS=(bash doom dunst fastfetch gtk-3.0 gtk-4.0 hypr icons kitty mpd rmpc nvim starship themes waybar)
 
-SERVICES=(NetworkManager bluetooth sddm)
+SERVICES=(NetworkManager bluetooth sddm mpd)
 
 # Native Packages
 
