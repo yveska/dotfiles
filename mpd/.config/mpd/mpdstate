@@ -1,8 +1,8 @@
 sw_volume: 100
 audio_device_state:1:PipeWire Sound Server
 state: pause
-current: 27
-time: 2.418
+current: 3
+time: 126.628
 random: 0
 repeat: 1
 single: 0
@@ -12,32 +12,10 @@ mixrampdb: 0
 mixrampdelay: -1
 lastloadedplaylist: 
 playlist_begin
-0:2hollis/Unreleased/All of the Lights.mp3
-1:2hollis/Unreleased/01. TIFERET.mp3
-2:2hollis/Unreleased/Nate Sib - U And I.mp3
-3:2hollis/Unreleased/a letter to hollis.mp3
-4:2hollis/Unreleased/a letter to hollis -pt 2.mp3
-5:2hollis/Unreleased/know my name.mp3
-6:2hollis/Unreleased/Daisy.mp3
-7:2hollis/Unreleased/Entering Light (DEMO).mp3
-8:2hollis/Unreleased/For You (No Intro).mp3
-9:2hollis/Unreleased/I KNOW.mp3
-10:2hollis/Unreleased/It Could Be You (The Jarl Scrapped Song).mp3
-11:2hollis/Unreleased/lucy.mp3
-12:2hollis/Unreleased/memoir of grey.mp3
-13:2hollis/Unreleased/THE ARMOR OF 300 RIVERS v.mp3
-14:2hollis/Unreleased/the harpman of the axe.mp3
-15:2hollis/Unreleased/The Lonesome Knight.mp3
-16:2hollis/Unreleased/the scholar of the bark.mp3
-17:2hollis/Unreleased/wiSH it never mÆTTERED ＊mækina＊.mp3
-18:2hollis/Unreleased/the battle of tenflower.mp3
-19:2hollis/Unreleased/Zweihander.mp3
-20:2hollis/Unreleased/Tenflower Square.mp3
-21:2hollis/Unreleased/bf847.mp3
-22:2hollis/Unreleased/04 DOUBT OF LOVE.mp3
-23:2hollis/Unreleased/05 Promise U That.mp3
-24:2hollis/Unreleased/07 AUTO TUNE TEARS SACRED RIVER.mp3
-25:2hollis/Unreleased/08 GOODBYE.mp3
-26:2hollis/Unreleased/09. I LET IT SHINE IN.mp3
-27:2hollis/Unreleased/010. FARTHENRIFT.mp3
+0:Kanye West/Unreleased/Awesome.mp3
+1:Kanye West/Unreleased/Future_Sounds_v27.mp3
+2:2hollis/Unreleased/07 AUTO TUNE TEARS SACRED RIVER.mp3
+3:2hollis/Unreleased/010. FARTHENRIFT.mp3
+4:Lucy Bedroque/lucy bedroque .. GIRLS!!!.mp3
+5:Lucy Bedroque/whitehorsemannequinprodginseng.mp3
 playlist_end
