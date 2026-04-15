@@ -22,7 +22,7 @@
   },
 
   "clock": {
-    "format": "{:%I:%M %d}" 
+    "format": "{:%I:%M / %d}" 
   },
 
   "cpu": {

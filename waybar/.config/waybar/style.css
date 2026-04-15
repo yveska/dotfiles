@@ -70,7 +70,6 @@ window#waybar {
     color: @fg;
 }
 
-/* The Tray needs a little breathing room to match the screenshot */
 #tray {
     padding-right: 10px;
 }

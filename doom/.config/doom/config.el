@@ -147,7 +147,7 @@
 
 ;; --- DASHBOARD (DRAINED ASCII) ---
 (remove-hook! '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu #'doom-dashboard-widget-footer)
-(custom-set-faces! '(doom-dashboard-banner :foreground "#C1C0D4" :weight bold))
+(custom-set-faces! '(doom-dashboard-banner :foreground "#7AA89F" :weight bold))
 
 (defun ascii ()
   (let* ((banner '("
