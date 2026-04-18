@@ -4,7 +4,7 @@
 
 DOTFILES_DIR="$HOME/dotfiles"
 
-CONFIGS=(bash doom dunst fastfetch gtk-3.0 gtk-4.0 hypr icons kitty mpd rmpc nvim starship themes waybar)
+CONFIGS=(bash doom dunst fastfetch gtk-3.0 gtk-4.0 hypr icons kitty rmpc nvim starship themes waybar yazi sioyek)
 
 SERVICES=(NetworkManager bluetooth sddm mpd)
 
@@ -20,7 +20,7 @@ DESKTOP=(hyprland uwsm xdg-desktop-portal-hyprland xdg-utils hyprpolkitagent pol
 
 TERMINAL=(kitty starship zoxide fzf fd eza bat btop fastfetch gdu tree-sitter-cli unzip)
 
-APPS=(nemo nemo-image-converter nemo-fileroller gvfs ntfs-3g tumbler imv mpv qbittorrent spotify-launcher readest zenity proton-vpn-gtk-app syncthing)
+APPS=(nemo nemo-image-converter nemo-fileroller gvfs ntfs-3g tumbler imv mpv qbittorrent readest proton-vpn-gtk-app syncthing)
 
 UTILS=(waybar pavucontrol dunst libnotify cliphist nwg-look slurp grim hyprpicker awww kid3)
 
