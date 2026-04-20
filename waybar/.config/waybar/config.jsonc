@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 34, // Increased height for better visibility
+  "height": 34, 
   "spacing": 0, 
 
   "modules-left": ["hyprland/workspaces"],
@@ -26,17 +26,17 @@
   },
 
   "cpu": {
-    "format": "CPU {usage}%",
+    "format": "cpu {usage}%",
     "on-click": "kitty -e btop"
   },
 
   "pulseaudio": {
-    "format": "VOL {volume}%",
+    "format": "vol {volume}%",
     "on-click": "pavucontrol"
   },
 
   "tray": {
-    "icon-size": 18, // Scaled icons up for legibility
+    "icon-size": 18, 
     "spacing": 10
   }
 }

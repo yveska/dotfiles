@@ -1,14 +1,14 @@
 /* Sharp, High-Contrast Industrial Palette */
-@define-color bg      #101214; /* Deep black-ink background */
-@define-color fg      #d1d1d1; /* Muted silver/white text */
-@define-color border  #4a4a4a; /* Medium gray for the outer frames */
-@define-color active  #2a2a2a; /* Slightly lighter for active workspace */
+@define-color bg      #101214; 
+@define-color fg      #d1d1d1;
+@define-color border  #4a4a4a;
+@define-color active  #2a2a2a;
 @define-color vpn     #c1c0d4;
 
 * {
     border: none;
     border-radius: 0;
-    font-family: "JetBrainsMono Nerd Font"; 
+    font-family: "FiraCode Nerd Font"; 
     font-size: 13px;
     font-weight: 400;
 }

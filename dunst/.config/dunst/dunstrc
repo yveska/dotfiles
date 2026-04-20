@@ -1,17 +1,15 @@
 [global]
+
 ### Appearance
-# Absolute sharp corners to match the structural GTK look
 corner_radius = 0 
-font = JetBrains Mono Nerd Font 10
+font = FiraCode Mono Nerd Font 10
 width = 320
 height = 90
 offset = 15x15
 origin = top-right
 
 # Borders and Padding
-# 1px border matches the thin outlines in your screenshot
 frame_width = 1
-# Deep slate for the border, slightly lighter than background
 frame_color = "#3d424a" 
 separator_color = "#3d424a"
 padding = 12
@@ -27,23 +25,17 @@ transparency = 0
 separator_height = 1
 
 [urgency_low]
-# Darkest slate background sampled from the UI panel
 background = "#1a1d21"
-# Muted secondary grey 
 foreground = "#8b919a"
 timeout = 5
 
 [urgency_normal]
-# Deep panel background 
 background = "#1f2228"
-# Bright white/parchment for high readability 
 foreground = "#f0efeb"
-# Accent color matching the slider handles in your screenshot
 frame_color = "#515761"
 timeout = 10
 
 [urgency_critical]
-# Muted rose-grey for critical without breaking the palette 
 background = "#CDACAC"
 foreground = "#1a1d21"
 frame_color = "#f5a191"
