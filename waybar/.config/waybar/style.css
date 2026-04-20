@@ -16,7 +16,7 @@
 window#waybar {
     background-color: @bg;
     color: @fg;
-    border-bottom: 2px solid @border; 
+/*    border-bottom: 2px solid @border; */
 }
 
 /* --- WORKSPACES --- */
