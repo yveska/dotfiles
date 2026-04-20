@@ -26,7 +26,7 @@ UTILS=(waybar pavucontrol dunst libnotify cliphist nwg-look slurp grim hyprpicke
 
 DEV=(git npm emacs luarocks luacheck lua-jsregexp hunspell hunspell-en_us)
 
-FONTS=(inter-font otf-atkinson-hyperlegible ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols)
+FONTS=(inter-font otf-atkinson-hyperlegible ttf-jetbrains-mono-nerd ttf-firacode-nerd ttf-nerd-fonts-symbols)
 
 # AUR Packages
 
