@@ -96,7 +96,7 @@
     :background modeline-bg-inactive :foreground modeline-fg-alt
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-inactive)))
 
-   ;; Org-mode Heading Hierarchy (Colors only, default Doom weights/sizes)
+   ;; Org-mode Heading Hierarchy
    (org-level-1 :foreground base8)
    (org-level-2 :foreground blue-accent)
    (org-level-3 :foreground green-accent)
@@ -113,7 +113,8 @@
    (org-link  :foreground blue-accent :underline t)
    (org-table :foreground base7 :background base1)
 
-   ;; UI Overrides
+;; UI Overrides
    (ivy-current-match :background base4 :distant-foreground base0 :weight 'normal)
+   (flyspell-incorrect :underline '(:color "#ff6c6b" :style wave))
    (markdown-header-face :inherit 'bold :foreground base8)
    ((markdown-code-face &override) :background base1)))
