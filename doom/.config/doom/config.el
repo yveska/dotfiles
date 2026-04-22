@@ -129,9 +129,34 @@
   :custom
   (org-roam-directory (file-truename "~/Life/roam/"))
   (org-roam-completion-everywhere t)
+
+
+;;  (org-roam-dailies-capture-templates
+;;   '(("d" "default" entry "* %<%I:%M %p>: %?"
+;;       :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+
   (org-roam-dailies-capture-templates
-    '(("d" "default" entry "* %<%I:%M %p>: %?"
-       :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+   '(("d" "default" entry
+      "** %<%I:%M %p>: %?"
+      :target (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n
+
+* Today did I... [/]
+  - [ ] Read
+  - [ ] Meditate
+  - [ ] Workout
+  - [ ] Draw
+
+* Day Plan [/]
+  - [ ] x
+  - [ ] x
+
+* Gratitude
+
+* Journal"
+                                  ("Journal"))
+           :empty-lines-before 1
+           :unnarrowed t)))
+
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n i" . org-roam-node-insert)
