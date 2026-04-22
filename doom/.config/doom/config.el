@@ -72,6 +72,10 @@
 
 
 ;; My Config <3
+;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
+;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+
+
 
 ;; --- PERFORMANCE & SYSTEM ---
 (setq gc-cons-threshold (* 256 1024 1024)
