@@ -186,6 +186,8 @@
          :if-new (file+head "notes/${slug}.org" "#+title: ${title}\n#+filetags: :video:\n") :unnarrowed t)
         ("nm" "movie" plain "%?"
          :if-new (file+head "notes/${slug}.org" "#+title: ${title}\n#+filetags: :movie:\n") :unnarrowed t)
+        ("nu" "uni" plain "%?"
+         :if-new (file+head "uni/${slug}.org" "#+title: ${title}\n#+filetags: :uni:\n") :unnarrowed t)
         ("nb" "book" plain "%?"
          :if-new (file+head "notes/${slug}.org" "#+title: ${title}\n#+filetags: :book:\n#+author:\n") :unnarrowed t)))
 

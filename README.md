@@ -1,7 +1,12 @@
 # My Current Arch Dotfiles!
 
-On clean install, ensure you install yay manually and run the script outside of chroot. 
+## Instructions
+1. Do a clean, minimal (type) arch install. 
+2. Install yay manually and git clone repository (must not be in chroot)
+3. If ~/dotfiles/ is in read-only, do "sudo chown -R $USER:$USER dotfiles" to give yourself access
+4. Start mpd manually, works better "systemctl --user enable --now mpd"
 
-Once install is finished, ~/dotfiles/ will be in read-only. Run "sudo chown -R $USER:$USER dotfiles" to give yourself access
+## Misc
+- To restore homepage in Zen-Browser, go to about:config and disable "zen.urlbar.replace-newtab"
+- Zen-Browser extensions used are Ublock, Leechblock NG, Unhook, and Vimium.
 
-It is better to start mpd as a service manually (systemctl --user enable --now mpd)
