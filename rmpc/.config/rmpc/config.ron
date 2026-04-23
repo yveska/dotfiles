@@ -150,13 +150,6 @@
             pane: Pane(Directories),
         ),
         (
-            name: "Artists",
-            pane: Split(
-                direction: Horizontal,
-                panes: [(size: "100%", borders: "ALL", pane: Pane(Artists))],
-            ),
-        ),
-        (
             name: "Search",
             pane: Split(
                 direction: Horizontal,
