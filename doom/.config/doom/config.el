@@ -151,6 +151,7 @@
          ("C-c n f" . org-roam-node-find)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
+         ("C-c n m" . org-roam-ui-mode)
          :map org-mode-map
          ("C-M-i" . completion-at-point)
          :map org-roam-dailies-map
