@@ -72,10 +72,6 @@
 
 
 ;; My Config <3
-;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-
-
 
 ;; --- PERFORMANCE & SYSTEM ---
 (setq gc-cons-threshold (* 256 1024 1024)
@@ -173,6 +169,28 @@
   (require 'org-roam-dailies)
   (org-roam-db-autosync-mode))
 
+;; --- CITAR / ZOTERO INTEGRATION
+(use-package citar
+  :after org
+  :custom
+  (citar-bibliography '("~/Life/refs.bib"))
+  (citar-notes-paths '("~/Life/roam/references"))
+  (citar-open-always-create-notes nil)
+  :bind
+  (("C-c n b" . citar-open)
+   ("C-c n B" . citar-insert-citation)
+   :map org-mode-map
+   ("C-c n r" . citar-insert-reference)))
+
+(use-package citar-org-roam
+  :after (citar org-roam)
+  :config
+  (citar-org-roam-mode)
+  (setq citar-org-roam-note-title-template "${title}"))
+;;  (setq citar-org-roam-note-title-template "${author} - ${title}"))
+
+(setq citar-org-roam-capture-template-key "nj")
+
 ;; --- ORG TEMPLATES ---
 (setq org-roam-capture-templates
       '(("d" "default" plain "%?"
@@ -181,24 +199,17 @@
          :if-new (file+head "reflections/${slug}.org" "#+title: ${title}\n") :unnarrowed t)
         ("n" "notes")
         ("na" "article" plain "%?"
-         :if-new (file+head "notes/${slug}.org" "#+title: ${title}\n#+filetags: :article:\n") :unnarrowed t)
+         :if-new (file+head "notes/references/${slug}.org" "#+title: ${title}\n#+filetags: :article:\n") :unnarrowed t)
         ("nv" "video" plain "%?"
-         :if-new (file+head "notes/${slug}.org" "#+title: ${title}\n#+filetags: :video:\n") :unnarrowed t)
+         :if-new (file+head "notes/references${slug}.org" "#+title: ${title}\n#+filetags: :video:\n") :unnarrowed t)
         ("nm" "movie" plain "%?"
          :if-new (file+head "notes/${slug}.org" "#+title: ${title}\n#+filetags: :movie:\n") :unnarrowed t)
         ("nu" "uni" plain "%?"
          :if-new (file+head "uni/${slug}.org" "#+title: ${title}\n#+filetags: :uni:\n") :unnarrowed t)
+        ("nj" "journal" plain "%?"
+         :if-new (file+head "~/Life/roam/notes/references/${slug}.org" "#+title: ${title}\n#+filetags: :reference:\n") :unnarrowed t)
         ("nb" "book" plain "%?"
          :if-new (file+head "notes/${slug}.org" "#+title: ${title}\n#+filetags: :book:\n#+author:\n") :unnarrowed t)))
-
-(use-package! org-roam-ui
-  :after org-roam
-  :hook (org-roam-mode . org-roam-ui-mode)
-  :config
-  (setq org-roam-ui-sync-theme t
-        org-roam-ui-follow t
-        org-roam-ui-update-on-save t
-        org-roam-ui-open-on-start t))
 
 ;; --- SYSTEM & UI FIXES ---
 (setq browse-url-browser-function 'browse-url-generic
