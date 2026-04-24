@@ -40,8 +40,17 @@ vim.opt.conceallevel = 0 -- do not hide markup
 vim.opt.concealcursor = "" -- do not hide cursorline in markup
 vim.opt.lazyredraw = true -- do not redraw during macros
 vim.opt.synmaxcol = 300 -- syntax highlighting limit
-vim.opt.fillchars = { eob = " ", horiz = "━", horizup = "┻", horizdown = "┳", vert = "┃", vertleft = "┫", vertright = "┣", verthoriz = "╋" } -- hide "~" on empty lines
-vim.opt.laststatus = 3  -- Pins the statusline to the bottom of the screen
+vim.opt.fillchars = {
+	eob = " ",
+	horiz = "━",
+	horizup = "┻",
+	horizdown = "┳",
+	vert = "┃",
+	vertleft = "┫",
+	vertright = "┣",
+	verthoriz = "╋",
+} -- hide "~" on empty lines
+vim.opt.laststatus = 3 -- Pins the statusline to the bottom of the screen
 
 vim.opt.backup = false -- do not create a backup file
 vim.opt.writebackup = false -- do not write to a backup file
@@ -150,6 +159,26 @@ vim.keymap.set("n", "<leader>td", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle diagnostics" })
 
+-- typst
+vim.keymap.set("n", "<leader>tp", function()
+	local client = vim.lsp.get_clients({ name = "tinymist" })[1]
+	if client then
+		client:exec_cmd({ command = "tinymist.startDefaultPreview", title = "Typst Preview" }, {})
+	else
+		print("Tinymist LSP not found")
+	end
+end, { desc = "Typst Live Preview" })
+
+vim.keymap.set("n", "<leader>te", function()
+	local path = vim.api.nvim_buf_get_name(0)
+	vim.lsp.buf.execute_command({
+		command = "tinymist.exportPdf",
+		arguments = { path },
+		title = "Exporting PDF...",
+	})
+	print("Exporting PDF to: " .. path:gsub(".typ$", ".pdf"))
+end, { desc = "Typst Export PDF" })
+
 --- Autocommands ---
 
 local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
@@ -165,6 +194,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		"*.jsx",
 		"*.ts",
 		"*.tsx",
+		"*.typ",
 		"*.json",
 		"*.css",
 		"*.scss",
@@ -254,19 +284,19 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- add plugins --
 vim.pack.add({
-  -- appearance
-  "https://www.github.com/webhooked/kanso.nvim",
-  "https://github.com/mellow-theme/mellow.nvim",
-  "https://github.com/wnkz/monoglow.nvim",
-  "https://www.github.com/nvim-lualine/lualine.nvim",
-  "https://www.github.com/nvim-tree/nvim-web-devicons",
-  "https://www.github.com/lewis6991/gitsigns.nvim",
-  "https://www.github.com/norcalli/nvim-colorizer.lua",
-  -- utility
-  "https://www.github.com/folke/which-key.nvim",
-  "https://www.github.com/nvim-tree/nvim-tree.lua",
-  "https://www.github.com/ibhagwan/fzf-lua",
-  "https://www.github.com/echasnovski/mini.nvim",
+	-- appearance
+	"https://www.github.com/webhooked/kanso.nvim",
+	"https://github.com/mellow-theme/mellow.nvim",
+	"https://github.com/wnkz/monoglow.nvim",
+	"https://www.github.com/nvim-lualine/lualine.nvim",
+	"https://www.github.com/nvim-tree/nvim-web-devicons",
+	"https://www.github.com/lewis6991/gitsigns.nvim",
+	"https://www.github.com/norcalli/nvim-colorizer.lua",
+	-- utility
+	"https://www.github.com/folke/which-key.nvim",
+	"https://www.github.com/nvim-tree/nvim-tree.lua",
+	"https://www.github.com/ibhagwan/fzf-lua",
+	"https://www.github.com/echasnovski/mini.nvim",
 	{
 		src = "https://github.com/nvim-treesitter/nvim-treesitter",
 		branch = "main",
@@ -334,6 +364,7 @@ local setup_treesitter = function()
 		"vue",
 		"svelte",
 		"bash",
+		"typst",
 	}
 
 	local config = require("nvim-treesitter.config")
@@ -626,6 +657,15 @@ vim.lsp.config("bashls", {})
 vim.lsp.config("ts_ls", {})
 vim.lsp.config("gopls", {})
 vim.lsp.config("clangd", {})
+vim.lsp.config("tinymist", {
+	settings = {
+		exportPdf = "never",
+		semanticTokens = "enable",
+		preview = {
+			refresh = "onType",
+		},
+	},
+})
 
 do
 	local luacheck = require("efmls-configs.linters.luacheck")
@@ -701,6 +741,7 @@ vim.lsp.enable({
 	"gopls",
 	"clangd",
 	"efm",
+	"tinymist",
 })
 
 --- Colorscheme and Look ---
@@ -795,42 +836,42 @@ require("lualine").setup({
 })
 
 -- Attaches to every FileType mode
-require 'colorizer'.setup()
+require("colorizer").setup()
 
 -- Attach to certain Filetypes, add special configuration for `html`
 -- Use `background` for everything else.
-require 'colorizer'.setup {
-  'css';
-  'javascript';
-  html = {
-    mode = 'foreground';
-  }
-}
+require("colorizer").setup({
+	"css",
+	"javascript",
+	html = {
+		mode = "foreground",
+	},
+})
 
 -- Use the `default_options` as the second parameter, which uses
 -- `foreground` for every mode. This is the inverse of the previous
 -- setup configuration.
-require 'colorizer'.setup({
-  'css';
-  'javascript';
-  html = { mode = 'background' };
-}, { mode = 'foreground' })
+require("colorizer").setup({
+	"css",
+	"javascript",
+	html = { mode = "background" },
+}, { mode = "foreground" })
 
 -- Use the `default_options` as the second parameter, which uses
 -- `foreground` for every mode. This is the inverse of the previous
 -- setup configuration.
-require 'colorizer'.setup {
-  '*'; -- Highlight all files, but customize some others.
-  css = { rgb_fn = true; }; -- Enable parsing rgb(...) functions in css.
-  html = { names = false; } -- Disable parsing "names" like Blue or Gray
-}
+require("colorizer").setup({
+	"*", -- Highlight all files, but customize some others.
+	css = { rgb_fn = true }, -- Enable parsing rgb(...) functions in css.
+	html = { names = false }, -- Disable parsing "names" like Blue or Gray
+})
 
 -- Exclude some filetypes from highlighting by using `!`
-require 'colorizer'.setup {
-  '*'; -- Highlight all files, but customize some others.
-  '!vim'; -- Exclude vim from highlighting.
-  -- Exclusion Only makes sense if '*' is specified!
-  }
+require("colorizer").setup({
+	"*", -- Highlight all files, but customize some others.
+	"!vim", -- Exclude vim from highlighting.
+	-- Exclusion Only makes sense if '*' is specified!
+})
 
 --- Floating Terminal ---
 
@@ -913,7 +954,12 @@ local function FloatingTerminal()
 	})
 end
 
-vim.keymap.set("n", "<leader>t", FloatingTerminal, { noremap = true, silent = true, desc = "Toggle floating terminal" })
+vim.keymap.set(
+	"n",
+	"<leader>ft",
+	FloatingTerminal,
+	{ noremap = true, silent = true, desc = "Toggle floating terminal" }
+)
 vim.keymap.set("t", "<Esc>", function()
 	if terminal_state.is_open and terminal_state.win and vim.api.nvim_win_is_valid(terminal_state.win) then
 		vim.api.nvim_win_close(terminal_state.win, false)
