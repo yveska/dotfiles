@@ -3,7 +3,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 ;; (setq user-full-name "John Doe"
@@ -71,7 +70,7 @@
 ;; they are implemented.
 
 
-;; My Config <3
+;; My Config!
 
 ;; --- PERFORMANCE & SYSTEM ---
 (setq gc-cons-threshold (* 256 1024 1024)
@@ -126,11 +125,6 @@
   (org-roam-directory (file-truename "~/Life/roam/"))
   (org-roam-completion-everywhere t)
 
-
-;;  (org-roam-dailies-capture-templates
-;;   '(("d" "default" entry "* %<%I:%M %p>: %?"
-;;       :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
-
   (org-roam-dailies-capture-templates
    '(("d" "default" entry
       "** %<%I:%M %p>: %?"
@@ -157,7 +151,6 @@
          ("C-c n f" . org-roam-node-find)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
-         ("C-c n g" . org-roam-graph)
          :map org-mode-map
          ("C-M-i" . completion-at-point)
          :map org-roam-dailies-map
@@ -177,8 +170,8 @@
   (citar-notes-paths '("~/Life/roam/references"))
   (citar-open-always-create-notes nil)
   :bind
-  (("C-c n b" . citar-open)
-   ("C-c n B" . citar-insert-citation)
+  (("C-c n B" . citar-open)
+   ("C-c n b" . citar-insert-citation)
    :map org-mode-map
    ("C-c n r" . citar-insert-reference)))
 
@@ -187,7 +180,6 @@
   :config
   (citar-org-roam-mode)
   (setq citar-org-roam-note-title-template "${title}"))
-;;  (setq citar-org-roam-note-title-template "${author} - ${title}"))
 
 (setq citar-org-roam-capture-template-key "nj")
 
@@ -195,8 +187,6 @@
 (setq org-roam-capture-templates
       '(("d" "default" plain "%?"
          :if-new (file+head "main/${slug}.org" "#+title: ${title}\n") :unnarrowed t)
-        ("r" "reflections" plain "%?"
-         :if-new (file+head "reflections/${slug}.org" "#+title: ${title}\n") :unnarrowed t)
         ("n" "notes")
         ("na" "article" plain "%?"
          :if-new (file+head "notes/references/${slug}.org" "#+title: ${title}\n#+filetags: :article:\n") :unnarrowed t)

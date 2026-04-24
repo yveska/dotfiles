@@ -30,7 +30,7 @@ FONTS=(inter-font otf-atkinson-hyperlegible ttf-jetbrains-mono-nerd ttf-firacode
 
 # AUR Packages
 
-AUR_PKGS=(hyprshade-git sioyek-dev localsend-bin vicinae-bin zen-browser-bin )
+AUR_PKGS=(hyprshade-git zotero-bin sioyek-dev localsend-bin vicinae-bin zen-browser-bin )
 
 set -e
 echo "󰣇 Starting Full System Deployment..."
