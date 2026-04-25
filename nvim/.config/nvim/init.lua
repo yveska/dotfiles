@@ -285,8 +285,6 @@ vim.api.nvim_create_autocmd("FileType", {
 -- add plugins --
 vim.pack.add({
 	-- appearance
-	"https://www.github.com/webhooked/kanso.nvim",
-	"https://github.com/mellow-theme/mellow.nvim",
 	"https://github.com/wnkz/monoglow.nvim",
 	"https://www.github.com/nvim-lualine/lualine.nvim",
 	"https://www.github.com/nvim-tree/nvim-web-devicons",
@@ -320,8 +318,6 @@ end
 
 -- install plugins --
 -- appearance
-packadd("kanso.nvim")
-packadd("mellow.nvim")
 packadd("monoglow.nvim")
 packadd("lualine.nvim")
 packadd("nvim-web-devicons")

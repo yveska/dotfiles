@@ -16,7 +16,7 @@ HARDWARE=(nvidia-open-dkms libva-nvidia-driver bluez bluez-utils blueman pipewir
 
 NETWORK=(networkmanager network-manager-applet iwd wireless_tools wpa_supplicant wget)
 
-DESKTOP=(hyprland uwsm xdg-desktop-portal-hyprland xdg-utils hyprpolkitagent polkit-kde-agent qt5-wayland qt6-wayland qt5-graphicaleffects qt5-quickcontrols2 qt5-svg qt6-5compat qt6-multimedia qt6-multimedia-ffmpeg  qqc2-desktop-style sddm)
+DESKTOP=(hyprland uwsm xdg-desktop-portal-hyprland xdg-utils hyprpolkitagent polkit-kde-agent qt5-wayland qt6-wayland qt5-graphicaleffects qt5-quickcontrols2 qt5-svg qt6-5compat qt6-multimedia qt6-multimedia-ffmpeg qqc2-desktop-style sddm)
 
 TERMINAL=(kitty starship zoxide fzf fd eza bat btop fastfetch gdu tree-sitter-cli mpd rmpc yazi unzip)
 
@@ -24,13 +24,13 @@ APPS=(nemo nemo-image-converter nemo-fileroller gvfs ntfs-3g tumbler imv mpv qbi
 
 UTILS=(waybar pavucontrol dunst libnotify cliphist nwg-look slurp grim hyprpicker awww kid3)
 
-DEV=(git npm emacs luarocks luacheck lua-jsregexp hunspell hunspell-en_us)
+DEV=(git npm emacs luarocks luacheck lua-jsregexp hunspell hunspell-en_us typst tinymist)
 
 FONTS=(inter-font otf-atkinson-hyperlegible ttf-jetbrains-mono-nerd ttf-firacode-nerd ttf-nerd-fonts-symbols)
 
 # AUR Packages
 
-AUR_PKGS=(hyprshade-git zotero-bin sioyek-dev localsend-bin vicinae-bin zen-browser-bin )
+AUR_PKGS=(hyprshade-git zotero-bin sioyek-dev localsend-bin vicinae-bin zen-browser-bin)
 
 set -e
 echo "󰣇 Starting Full System Deployment..."
@@ -67,19 +67,19 @@ echo "Step 4: Symlinking SDDM Theme with Stow..."
 THEME_NAME="nier-automata"
 
 if [ -d "$DOTFILES_DIR/sddm-theme" ]; then
-    # 1. Create the system directory if it doesn't exist
-    sudo mkdir -p /usr/share/sddm/themes
-    
-    # 2. Use Stow with the --target (-t) flag. 
-    # This tells Stow to link INTO /usr/share/sddm/themes instead of $HOME.
-    sudo stow -d "$DOTFILES_DIR" -t /usr/share/sddm/themes sddm-theme
-    
-    # 3. Apply the config
-    sudo bash -c "cat > /etc/sddm.conf <<EOF
+	# 1. Create the system directory if it doesn't exist
+	sudo mkdir -p /usr/share/sddm/themes
+
+	# 2. Use Stow with the --target (-t) flag.
+	# This tells Stow to link INTO /usr/share/sddm/themes instead of $HOME.
+	sudo stow -d "$DOTFILES_DIR" -t /usr/share/sddm/themes sddm-theme
+
+	# 3. Apply the config
+	sudo bash -c "cat > /etc/sddm.conf <<EOF
 [Theme]
 Current=$THEME_NAME
 EOF"
-    echo "  ✔ SDDM theme stowed to system."
+	echo "  ✔ SDDM theme stowed to system."
 fi
 
 # --- 6. EDITOR INITIALIZATION ---
