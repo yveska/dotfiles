@@ -1,51 +1,50 @@
 /* Sharp, High-Contrast Industrial Palette */
-@define-color bg      #101214; 
+@define-color bg      #101214;
 @define-color fg      #d1d1d1;
 @define-color border  #4a4a4a;
 @define-color active  #2a2a2a;
 @define-color vpn     #c1c0d4;
 
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "FiraCode Nerd Font"; 
-    font-size: 13px;
-    font-weight: 400;
+  border: none;
+  border-radius: 0;
+  font-family: "FiraCode Nerd Font";
+  font-size: 13px;
+  font-weight: 400;
 }
 
 window#waybar {
-    background-color: @bg;
-    color: @fg;
-/*    border-bottom: 2px solid @border; */
+  background-color: @bg;
+  color: @fg;
 }
 
 /* --- WORKSPACES --- */
 #workspaces {
-    border-right: 1px solid @border;
-    margin-right: 5px;
+  border-right: 1px solid @border;
+  margin-right: 5px;
 }
 
 #workspaces button {
-    color: #555555; /* Dimmed for inactive */
-    padding: 0 10px;
-    border-right: 1px solid @border;
+  color: #555555;
+  padding: 0 10px;
+  border-right: 1px solid @border;
 }
 
 #workspaces button.active {
-    color: @fg;
-    background-color: @active;
+  color: @fg;
+  background-color: @active;
 }
 
 #workspaces button:hover {
-    background-color: @border;
-    color: @bg;
+  background-color: @border;
+  color: @bg;
 }
 
 /* --- CENTER CLOCK --- */
 #clock {
-    padding: 0 15px;
-    border-left: 1px solid @border;
-    border-right: 1px solid @border;
+  padding: 0 15px;
+  border-left: 1px solid @border;
+  border-right: 1px solid @border;
 }
 
 /* --- RIGHT SIDE MODULES --- */
@@ -53,25 +52,24 @@ window#waybar {
 #pulseaudio,
 #cpu,
 #tray {
-    padding: 0 12px;
-    border-left: 1px solid @border;
+  padding: 0 12px;
+  border-left: 1px solid @border;
 }
 
 #custom-vpn.connected {
-    color: @vpn;
+  color: @vpn;
 }
 
-/* specific module tweaks for that "lcd" feel */
 #cpu {
-    color: #a0a0a0;
+  color: #a0a0a0;
 }
 
 #pulseaudio {
-    color: @fg;
+  color: @fg;
 }
 
 #tray {
-    padding-right: 10px;
+  padding-right: 10px;
 }
 
 tooltip {

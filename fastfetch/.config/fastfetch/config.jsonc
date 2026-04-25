@@ -18,12 +18,6 @@
     },
     "break",
     {
-      "type": "users",
-      "key": "   ",
-      "format": "Adam @ Arch",
-      "keyColor": "cyan"
-    },
-    {
       "type": "host",
       "key": "   ",
       "format": "{2}",
