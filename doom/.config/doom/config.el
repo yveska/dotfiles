@@ -53,28 +53,6 @@
   (org-roam-directory (file-truename "~/Life/roam/"))
   (org-roam-completion-everywhere t)
 
-  (org-roam-dailies-capture-templates
-   '(("d" "default" entry
-      "** %<%I:%M %p>: %?"
-      :target (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n
-
-* Today did I... [/]
-  - [ ] Read
-  - [ ] Meditate
-  - [ ] Workout
-  - [ ] Draw
-
-* Day Plan [/]
-  - [ ] x
-  - [ ] x
-
-* Gratitude
-
-* Journal"
-                                  ("Journal"))
-           :empty-lines-before 1
-           :unnarrowed t)))
-
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n i" . org-roam-node-insert)
@@ -96,7 +74,7 @@
   :after org
   :custom
   (citar-bibliography '("~/Life/refs.bib"))
-  (citar-notes-paths '("~/Life/roam/references"))
+  (citar-notes-paths '("~/Life/roam/"))
   (citar-open-always-create-notes nil)
   :bind
   (("C-c n B" . citar-open)
@@ -110,25 +88,37 @@
   (citar-org-roam-mode)
   (setq citar-org-roam-note-title-template "${title}"))
 
-(setq citar-org-roam-capture-template-key "nj")
+(setq citar-org-roam-capture-template-key "d")
 
 ;; --- ORG TEMPLATES ---
 (setq org-roam-capture-templates
       '(("d" "default" plain "%?"
-         :if-new (file+head "main/${slug}.org" "#+title: ${title}\n") :unnarrowed t)
-        ("n" "notes")
-        ("na" "article" plain "%?"
-         :if-new (file+head "notes/references/${slug}.org" "#+title: ${title}\n#+filetags: :article:\n") :unnarrowed t)
-        ("nv" "video" plain "%?"
-         :if-new (file+head "notes/references${slug}.org" "#+title: ${title}\n#+filetags: :video:\n") :unnarrowed t)
-        ("nm" "movie" plain "%?"
-         :if-new (file+head "notes/${slug}.org" "#+title: ${title}\n#+filetags: :movie:\n") :unnarrowed t)
-        ("nu" "uni" plain "%?"
-         :if-new (file+head "uni/${slug}.org" "#+title: ${title}\n#+filetags: :uni:\n") :unnarrowed t)
-        ("nj" "journal" plain "%?"
-         :if-new (file+head "~/Life/roam/notes/references/${slug}.org" "#+title: ${title}\n#+filetags: :reference:\n") :unnarrowed t)
-        ("nb" "book" plain "%?"
-         :if-new (file+head "notes/${slug}.org" "#+title: ${title}\n#+filetags: :book:\n#+author:\n") :unnarrowed t)))
+         :if-new (file+head "${slug}.org" "#+title: ${title}\n#+filetags: \n ") :unnarrowed t)))
+(setq org-roam-dailies-capture-templates
+   '(("d" "default" entry
+      "** %<%I:%M %p>: %?"
+      :target (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+filetags:
+
+* Today did I... [/]
+  - [ ] Read
+  - [ ] Meditate
+  - [ ] Workout
+  - [ ] Draw
+
+* Day Plan [/]
+  - [ ] x
+  - [ ] x
+
+* Gratitude
+
+* Journal"
+                                  ("Journal"))
+           :empty-lines-before 1
+           :unnarrowed t)))
+
+;; Fix #daily on daily tags
+(after! org-roam
+  (setq org-roam-dailies-directory "."))
 
 ;; --- SYSTEM & UI FIXES ---
 (setq browse-url-browser-function 'browse-url-generic
