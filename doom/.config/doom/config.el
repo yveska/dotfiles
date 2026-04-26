@@ -44,6 +44,9 @@
 ;; --- ORG SETUP ---
 (setq org-directory "~/Life/org/")
 (setq org-roam-directory (file-truename "~/Life/roam/"))
+(setq org-agenda-files
+      '("~/Life/roam/"
+        "~/Life/org/"))
 
 (use-package org-roam
   :ensure t
@@ -88,16 +91,36 @@
   (citar-org-roam-mode)
   (setq citar-org-roam-note-title-template "${title}"))
 
-(setq citar-org-roam-capture-template-key "d")
+(setq citar-org-roam-capture-template-key "l")
 
 ;; --- ORG TEMPLATES ---
 (setq org-roam-capture-templates
-      '(("d" "default" plain "%?"
-         :if-new (file+head "${slug}.org" "#+title: ${title}\n#+filetags: \n ") :unnarrowed t)))
+      '(
+        ("f" "Fleeting" plain
+         "%?"
+         :if-new (file+head "${slug}.org"
+                            "#+title: ${title}\n#+filetags: fleeting\n\n# References\nOriginal Capture\n> ${title}\n\n* Fleeting\n")
+         :unnarrowed t)
+        ("l" "Literature" plain
+         "%?"
+         :if-new (file+head "${slug}.org"
+                            "#+title: ${title}\n#+filetags: literature\n:up: \n\n* See Also\n")
+         :unnarrowed t)
+        ("a" "Atomic" plain
+         "%?"
+         :if-new (file+head "${slug}.org"
+                            "#+title: ${title}\n#+filetags: atomic\n:up: \n\n* See Also\n\n* References\n")
+         :unnarrowed t)
+        ("p" "Project" plain
+         "%?"
+         :if-new (file+head "${slug}.org"
+                            "#+title: ${title}\n#+filetags: project\n\n* Tasks [/]\n* Draft\n")
+         :unnarrowed t)))
+
 (setq org-roam-dailies-capture-templates
    '(("d" "default" entry
       "** %<%I:%M %p>: %?"
-      :target (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+filetags:
+      :target (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+filetags: journal
 
 * Today did I... [/]
   - [ ] Read
