@@ -158,3 +158,7 @@
       :desc "Org capture" "X" #'org-capture)
 (map! :n "j" #'evil-next-visual-line
       :n "k" #'evil-previous-visual-line)
+(map! :after org
+      "C-c n t" #'org-timer-set-timer
+      "C-c n s" #'org-timer-stop
+      "C-c n p" #'org-timer-pause-or-continue)
