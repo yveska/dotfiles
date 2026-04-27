@@ -17,7 +17,7 @@ alias grep='grep --color=auto'
 alias ff='nvim (fzf -m)'
 alias vim='nvim'
 
-alias dotsync='cd ~/dotfiles; and git add .; and git commit -m "update: $(date +%Y-%m-%d_%H:%M)"; and git push; and cd -'
+alias dotsync='cd ~/dotfiles; and git add .; and git commit -m "update: "(date +%Y-%m-%d_%H:%M); and git push; and cd -'
 
 # Enhanced Directory Navigation (Replacing your bash zd)
 # Fish + Zoxide handles most of this natively, but here is your custom logic:
