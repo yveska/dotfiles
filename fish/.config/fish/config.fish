@@ -17,10 +17,8 @@ alias grep='grep --color=auto'
 alias ff='nvim (fzf -m)'
 alias vim='nvim'
 
-# Github dotfiles sync
 function dotsync
-    set -l timestamp (date +%Y-%m-%d_%H:%M)
-    cd ~/dotfiles; and git add .; and git commit -m "update: $timestamp"; and git push; and cd -
+    cd ~/dotfiles; and git add .; and git commit -m "update: "(date +%Y-%m-%d_%H:%M | string collect); and git push; and cd -
 end
 
 # Zoxide
