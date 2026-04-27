@@ -17,10 +17,6 @@ alias grep='grep --color=auto'
 alias ff='nvim (fzf -m)'
 alias vim='nvim'
 
-function dotsync
-    cd ~/dotfiles; and git add .; and git commit -m "update: "(date +%Y-%m-%d_%H:%M | string collect); and git push; and cd -
-end
-
 # Zoxide
 function cd
     if count $argv > /dev/null
