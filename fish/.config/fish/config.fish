@@ -17,13 +17,13 @@ alias grep='grep --color=auto'
 alias ff='nvim (fzf -m)'
 alias vim='nvim'
 
+# Github dotfiles sync
 function dotsync
     set -l timestamp (date +%Y-%m-%d_%H:%M)
     cd ~/dotfiles; and git add .; and git commit -m "update: $timestamp"; and git push; and cd -
 end
 
-# Enhanced Directory Navigation (Replacing your bash zd)
-# Fish + Zoxide handles most of this natively, but here is your custom logic:
+# Zoxide
 function cd
     if count $argv > /dev/null
         if test -d $argv[1]
@@ -38,7 +38,7 @@ function cd
     end
 end
 
-# Yazi Wrapper
+# Yazi
 function y
     set tmp (mktemp -t "yazi-cwd.XXXXXX")
     yazi $argv --cwd-file="$tmp"
