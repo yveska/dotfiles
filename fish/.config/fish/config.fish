@@ -17,12 +17,11 @@ alias grep='grep --color=auto'
 alias ff='nvim (fzf -m)'
 alias vim='nvim'
 
-# Optimized Dotfile Sync Function
 function dotsync
     set -l current_dir (pwd)
     cd ~/dotfiles
     git add .
-    git commit -m "update: (date +%Y-%m-%d_%H:%M)"
+    git commit -m "update: $(date +%Y-%m-%d_%H:%M)" 
     git push
     cd $current_dir
 end
