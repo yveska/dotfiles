@@ -4,7 +4,7 @@
 
 DOTFILES_DIR="$HOME/dotfiles"
 
-CONFIGS=(bash doom dunst fastfetch gtk-3.0 gtk-4.0 hypr icons kitty rmpc nvim starship themes waybar yazi sioyek)
+CONFIGS=(bash doom dunst fastfetch fish gtk-3.0 gtk-4.0 hypr icons kitty rmpc nvim starship themes waybar yazi sioyek)
 
 SERVICES=(NetworkManager bluetooth sddm)
 
@@ -18,7 +18,7 @@ NETWORK=(networkmanager network-manager-applet iwd wireless_tools wpa_supplicant
 
 DESKTOP=(hyprland uwsm xdg-desktop-portal-hyprland xdg-utils hyprpolkitagent polkit-kde-agent qt5-wayland qt6-wayland qt5-graphicaleffects qt5-quickcontrols2 qt5-svg qt6-5compat qt6-multimedia qt6-multimedia-ffmpeg qqc2-desktop-style sddm)
 
-TERMINAL=(kitty starship zoxide fzf fd eza bat btop fastfetch gdu tree-sitter-cli mpd mpc rmpc yazi unzip)
+TERMINAL=(fish fisher kitty starship zoxide fzf fd eza bat btop fastfetch gdu tree-sitter-cli mpd mpc rmpc yazi unzip)
 
 APPS=(nemo nemo-image-converter nemo-fileroller gvfs ntfs-3g tumbler imv mpv qbittorrent readest proton-vpn-gtk-app syncthing)
 
