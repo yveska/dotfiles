@@ -62,7 +62,7 @@ fi
 chmod +x "$HOME"
 chmod +x "$DOTFILES_DIR"
 
-# --- 5. SDDM THEME SETUP (STOW VERSION) ---
+# --- 5. SDDM THEME SETUP ---
 echo "Step 4: Symlinking SDDM Theme with Stow..."
 THEME_NAME="nier-automata"
 
@@ -88,6 +88,13 @@ echo "Step 5: Initializing Doom Emacs & Neovim..."
 if [ ! -d "$HOME/.config/emacs" ]; then
 	git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 	~/.config/emacs/bin/doom install
+fi
+
+# --- 6. SHELL INITIALIZATION ---
+# Change the default shell to fish for the current user
+if [ "$SHELL" != "/usr/bin/fish" ]; then
+	echo "Changing default shell to fish..."
+	sudo chsh -s /usr/bin/fish "$USER"
 fi
 
 # --- 7. SERVICES ---
