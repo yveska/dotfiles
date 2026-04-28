@@ -32,7 +32,7 @@
 (add-to-list 'default-frame-alist '(alpha . (96 . 97)))
 
 ;; --- CURSOR & INTERACTION ---
-; (setq confirm-kill-emacs nil)
+(setq confirm-kill-emacs nil)
 (blink-cursor-mode 1)
 (setq auto-save-default t)
 (setq delete-by-moving-to-trash t)

@@ -44,11 +44,25 @@ sudo pacman -Syu --needed --noconfirm "${ALL_NATIVE[@]}"
 echo "Step 2: Installing AUR Packages..."
 yay -S --needed --noconfirm "${AUR_PKGS[@]}"
 
+# --- 3.5 FONT INSTALL ---
+echo "Step 3.5: Installing IoskeleyMonoTerm Nerd Font..."
+FONT_DIR="$HOME/.local/share/fonts/ioskeley"
+if [ ! -d "$FONT_DIR" ]; then
+	mkdir -p "$FONT_DIR"
+	curl -L -o /tmp/ioskeley.zip https://github.com/ahatem/IoskeleyMono/releases/download/v2.0.0/IoskeleyMono-Term-NerdFont.zip
+	unzip -o /tmp/ioskeley.zip -d "$FONT_DIR"
+	rm /tmp/ioskeley.zip
+	fc-cache -f
+	echo "  ✔ IoskeleyMono installed."
+else
+	echo "  󰄬 IoskeleyMono already present, skipping."
+fi
+
 # --- 4. DOTFILES DEPLOYMENT (STOW) ---
 echo "Step 3: Symlinking Dotfiles..."
 if [ -d "$DOTFILES_DIR" ]; then
 	# Remove default bashrc to avoid Stow conflicts
-	[ -f "$HOME/.bashrc" ] && rm "$HOME/.bashrc"
+	[ -f "$HOME/.bashrc" ] && rm "$HOME/.bashrc" && rm -rf "$HOME/.config/fish/"
 
 	cd "$DOTFILES_DIR"
 	for config in "${CONFIGS[@]}"; do
