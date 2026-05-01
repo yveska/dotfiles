@@ -48,6 +48,12 @@
       '("~/Life/roam/"
         "~/Life/org/"))
 
+(defun roam/excjournal ()
+  "Find roam nodes, excluding journal entries."
+  (interactive)
+  (org-roam-node-find nil nil
+    (lambda (node) (not (member "journal" (org-roam-node-tags node))))))
+
 (use-package org-roam
   :ensure t
   :init
@@ -57,7 +63,8 @@
   (org-roam-completion-everywhere t)
 
   :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n f" . org-roam-node-find)
+         ("C-c n F" . org-roam-node-find)
+         ("C-c n f" . roam/excjournal) ;; find all nodes excluding dailies
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
          ("C-c n m" . org-roam-ui-mode)
