@@ -13,8 +13,8 @@
 ;; --- VISUALS & THEME ---
 (setq doom-theme 'doom-mono-industrial)
 (setq display-line-numbers-type nil)
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
-      doom-variable-pitch-font (font-spec :family "Inter" :size 15 :weight 'light))
+ (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
+       doom-variable-pitch-font (font-spec :family "Inter" :size 15 :weight 'light))
 
 (custom-set-faces!
   '(org-level-1 :height 1.03 :weight bold)
@@ -44,8 +44,7 @@
 
 ;; --- CURSOR & INTERACTION ---
 (setq confirm-kill-emacs nil)
-(blink-cursor-mode 1)
-(setq blink-cursor-interval 0.65)
+(blink-cursor-mode 0)
 (setq auto-save-default t)
 (setq delete-by-moving-to-trash t)
 
