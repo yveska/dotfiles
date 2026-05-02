@@ -13,6 +13,8 @@
 ;; --- VISUALS & THEME ---
 (setq doom-theme 'doom-mono-industrial)
 (setq display-line-numbers-type nil)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
+      doom-variable-pitch-font (font-spec :family "Inter" :size 15 :weight 'light))
 
 ;; Margins
 (setq-default left-margin-width 2
@@ -111,17 +113,17 @@
         ("l" "Literature" plain
          "%?"
          :if-new (file+head "${slug}.org"
-                            "#+title: ${title}\n#+filetags: literature\n:up: \n\n* See Also\n")
+                            "#+title: ${title}\n#+filetags: literature\n:up: \n\n* _See Also_\n")
          :unnarrowed t)
         ("a" "Atomic" plain
          "%?"
          :if-new (file+head "${slug}.org"
-                            "#+title: ${title}\n#+filetags: atomic\n:up: \n\n* See Also\n\n* References\n")
+                            "#+title: ${title}\n#+filetags: atomic\n:up: \n\n* _See Also_\n\n* References\n")
          :unnarrowed t)
         ("p" "Project" plain
          "%?"
          :if-new (file+head "${slug}.org"
-                            "#+title: ${title}\n#+filetags: project\n\n* Tasks [/]\n* Draft\n")
+                            "#+title: ${title}\n#+filetags: project\n\n* _Tasks_ [/]\n* _Draft_\n")
          :unnarrowed t)))
 
 (setq org-roam-dailies-capture-templates
@@ -129,19 +131,19 @@
       "** %<%I:%M %p>: %?"
       :target (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+filetags: journal
 
-* Today did I... [/]
+* _Today did I..._ [/]
   - [ ] Read
   - [ ] Meditate
   - [ ] Workout
   - [ ] Draw
 
-* Day Plan [/]
+* _Day Plan_ [/]
   - [ ] x
   - [ ] x
 
-* Gratitude
+* _Gratitude_
 
-* Journal"
+* _Journal_"
                                   ("Journal"))
            :empty-lines-before 1
            :unnarrowed t)))
