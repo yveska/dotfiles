@@ -16,6 +16,13 @@
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
       doom-variable-pitch-font (font-spec :family "Inter" :size 15 :weight 'light))
 
+(custom-set-faces!
+  '(org-level-1 :height 1.03 :weight bold)
+  '(org-level-2 :height 1.02 :weight bold)
+  '(org-level-3 :height 1.01 :weight bold)
+  '(org-checkbox :height 1.1 :foreground "#738294" :weight bold)
+  '(org-tag :height 0.8 :foreground "#57575f" :weight light))
+
 ;; Margins
 (setq-default left-margin-width 2
               right-margin-width 2
@@ -33,15 +40,18 @@
 (set-frame-parameter (selected-frame) 'alpha '(96 . 97))
 (add-to-list 'default-frame-alist '(alpha . (96 . 97)))
 
+(add-hook 'window-setup-hook #'global-hide-mode-line-mode)
+
 ;; --- CURSOR & INTERACTION ---
 (setq confirm-kill-emacs nil)
 (blink-cursor-mode 1)
+(setq blink-cursor-interval 0.65)
 (setq auto-save-default t)
 (setq delete-by-moving-to-trash t)
 
-(setq evil-normal-state-cursor '(box "#7AA89F")
-      evil-insert-state-cursor '((bar . 2) "#7AA89F")
-      evil-visual-state-cursor '(hollow "#7AA89F"))
+(setq evil-normal-state-cursor '(box "#738294")
+      evil-insert-state-cursor '((bar . 2) "#8ba48d")
+      evil-visual-state-cursor '(hollow "#a48b8b"))
 
 ;; --- ORG SETUP ---
 (setq org-directory "~/Life/org/")
@@ -143,7 +153,7 @@
 
 * _Gratitude_
 
-* _Journal_"
+* Journal"
                                   ("Journal"))
            :empty-lines-before 1
            :unnarrowed t)))
