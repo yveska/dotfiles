@@ -61,11 +61,19 @@ fi
 # --- 4. DOTFILES DEPLOYMENT (STOW) ---
 echo "Step 3: Symlinking Dotfiles..."
 if [ -d "$DOTFILES_DIR" ]; then
-	# Remove default bashrc to avoid Stow conflicts
-	[ -f "$HOME/.bashrc" ] && rm "$HOME/.bashrc" && rm -rf "$HOME/.config/fish/"
+	# Instead of deleting the whole fish folder, we only remove
+	# specific files that frequently conflict with stow.
+	[ -f "$HOME/.bashrc" ] && rm "$HOME/.bashrc"
+
+	# Remove existing fish config only if it's a real directory/file
+	# to let stow create the symlink properly.
+	if [ -d "$HOME/.config/fish" ] || [ -f "$HOME/.config/fish" ]; then
+		rm -rf "$HOME/.config/fish"
+	fi
 
 	cd "$DOTFILES_DIR"
 	for config in "${CONFIGS[@]}"; do
+		# -R (Restow) is good, but we ensure the path is clear first
 		stow -R "$config"
 		echo "  ✔ Stowed $config"
 	done
