@@ -161,6 +161,20 @@
 (after! org-roam
   (setq org-roam-dailies-directory "."))
 
+;; Jinx
+(use-package! jinx
+  :hook (doom-first-input . global-jinx-mode)
+  :config
+  (setq jinx-languages "en_US")
+
+  (map! :leader
+        (:prefix-map ("s" . "search/spell") ;; Nesting under the existing 's' prefix
+         :desc "Jinx correct"           "j" #'jinx-correct
+         :desc "Jinx correct all"       "J" #'jinx-correct-all
+         :desc "Jinx languages"         "l" #'jinx-languages))
+  (map! "M-$"   #'jinx-correct
+        "C-M-$" #'jinx-languages))
+
 ;; --- SYSTEM & UI FIXES ---
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "zen-browser"
