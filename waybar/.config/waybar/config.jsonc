@@ -6,7 +6,7 @@
 
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["custom/vpn", "pulseaudio", "memory", "tray"],
+  "modules-right": ["custom/vpn", "pulseaudio", "tray"],
 
   "hyprland/workspaces": {
     "format": "{name}",
