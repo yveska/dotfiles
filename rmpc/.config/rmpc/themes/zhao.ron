@@ -1,0 +1,183 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+
+(
+    default_album_art_path: None,
+    show_song_table_header: true,
+    draw_borders: true,
+    browser_column_widths: [20, 30, 60],
+    symbols: (song: "󰎈 ", dir: "󰉋 ", marker: " ", ellipsis: "..."),
+
+    /* THE ABYSS: Refined Kitty Palette */
+    text_color: "#d8dee9", // Main desaturated foreground
+
+    tab_bar: (
+        enabled: true,
+        active_style: (bg: "#101a2d", fg: "#ffffff", modifiers: "Bold"), // Selection navy with white splash
+        inactive_style: (fg: "#3b4252", modifiers: ""), // Muted deep slate
+    ),
+
+    highlighted_item_style: (fg: "#ffffff", modifiers: "Bold"), // Focused white splash[cite: 2]
+    current_item_style: (fg: "#5e81ac", bg: "#101a2d", modifiers: "Bold"), // Tasteful steel blue on navy[cite: 2]
+
+    borders_style: (fg: "#3b4252", modifiers: "Bold"), // Deepest slate for subtle borders[cite: 2]
+    highlight_border_style: (fg: "#5e81ac"), // Steel blue active border[cite: 2]
+
+    /* FIX: PROGRESS BAR LEGIBILITY */
+    progress_bar: (
+        symbols: ["┄", "┅", "━"],
+        track_style: (fg: "#1a1d21"), // Murky "empty" track[cite: 2]
+        elapsed_style: (fg: "#5e81ac"), // Rich steel blue "filled" track[cite: 2]
+        thumb_style: (fg: "#ffffff"), // White splash thumb[cite: 2]
+    ),
+
+    scrollbar: (
+        symbols: ["", "", "", ""],
+        track_style: (fg: "#02040a"), 
+        ends_style: (fg: "#02040a"), 
+        thumb_style: (fg: "#101a2d"), 
+    ),
+
+    browser_song_format: [
+        (
+            kind: Group([
+                (kind: Property(Track)),
+                (kind: Text(" ")),
+            ])
+        ),
+        (
+            kind: Group([
+                (kind: Property(Title)),
+                (kind: Text(" - ")),
+                (kind: Property(Artist)),
+            ]),
+            default: (kind: Property(Filename)),
+        ),
+    ],
+
+    song_table_format: [
+        (
+            prop: (
+                kind: Property(Title), 
+                style: (fg: "#ffffff"), // Primary white splash[cite: 2]
+                highlighted_item_style: (fg: "#02040a", bg: "#5e81ac", modifiers: "Bold"), 
+                default: (kind: Property(Filename), style: (fg: "#4c566a")), 
+            ),
+            width: "50%",
+        ),
+        (
+            prop: (
+                kind: Property(Artist), 
+                style: (fg: "#5e81ac"), // Rich architectural blue[cite: 2]
+                default: (kind: Text("Unknown Artist"), style: (fg: "#4c566a")), 
+            ),
+            width: "45%",
+        ),
+        (
+            prop: (
+                kind: Property(Duration), 
+                style: (fg: "#4c566a") 
+            ),
+            width: "10%",
+            alignment: Right,
+        ),
+    ],
+
+    header: (
+        rows: [
+            (
+                left: [
+                    (kind: Text("["), style: (fg: "#3b4252", modifiers: "Bold")),
+                    (kind: Property(Status(State)), style: (fg: "#ffffff", modifiers: "Bold")),
+                    (kind: Text("]"), style: (fg: "#3b4252", modifiers: "Bold")),
+                ],
+                center: [
+                    (
+                        kind: Property(Song(Title)), 
+                        style: (fg: "#ffffff", modifiers: "Bold"), // Hero white splash[cite: 2]
+                        default: (kind: Property(Song(Filename)), style: (fg: "#ffffff", modifiers: "Bold")),
+                    ),
+                ],
+                right: [
+                    (kind: Text("Vol: "), style: (fg: "#5e81ac", modifiers: "Bold")), 
+                    /* FIX: UNIFIED VOLUME COLOR */
+                    (kind: Property(Status(Volume)), style: (fg: "#ffffff", modifiers: "Bold")), 
+                    (kind: Text("%"), style: (fg: "#ffffff", modifiers: "Bold")), // Matched to white splash[cite: 2]
+                ],
+            ),
+            (
+                left: [
+                    (kind: Property(Status(Elapsed)), style: (fg: "#5e81ac")), 
+                    (kind: Text("/"), style: (fg: "#3b4252")), 
+                    (kind: Property(Status(Duration)), style: (fg: "#5e81ac")), 
+                ],
+                center: [
+                    (
+                        kind: Property(Song(Artist)), 
+                        style: (fg: "#5e81ac", modifiers: "Bold"), 
+                        default: (kind: Text("Unknown Artist"), style: (fg: "#5e81ac", modifiers: "Bold")),
+                    ),
+                ],
+                right: [
+                    (
+                        kind: Property(Widget(States(
+                            active_style: (fg: "#ffffff", modifiers: "Bold"), 
+                            separator_style: (fg: "#101a2d"),
+                        ))),
+                        style: (fg: "#4c566a"),
+                    ),
+                ],
+            ),
+        ],
+    ),
+
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                size: "4",
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (
+                            size: "100%",
+                            pane: Split(
+                                direction: Vertical,
+                                panes: [
+                                    (
+                                        size: "4",
+                                        borders: "ALL",
+                                        pane: Pane(Header),
+                                    ),
+                                ],
+                            ),
+                        ),
+                    ],
+                ),
+            ),
+            (
+                size: "3",
+                pane: Pane(Tabs),
+            ),
+            (
+                size: "100%",
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (
+                            size: "100%",
+                            borders: "NONE",
+                            pane: Pane(TabContent),
+                        ),
+                    ],
+                ),
+            ),
+            (
+                size: "3",
+                borders: "TOP | BOTTOM",
+                pane: Pane(ProgressBar),
+            ),
+        ],
+    ),
+)
