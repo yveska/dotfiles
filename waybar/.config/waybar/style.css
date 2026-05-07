@@ -1,84 +1,105 @@
-/* Sharp, High-Contrast Industrial Palette */
-@define-color bg      #101214;
-@define-color fg      #d1d1d1;
-@define-color border  #4a4a4a;
-@define-color active  #2a2a2a;
-@define-color vpn     #c1c0d4;
+@define-color abyss_black    rgba(2, 4, 10, 0.6);
+@define-color aether_glow    #81a1c1;
+@define-color nova_white     #ffffff;
 
 * {
   border: none;
-  border-radius: 0;
-  font-family: "IoskeleyMonoTerm Nerd Font";
+  font-family: "Spectral", serif;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 window#waybar {
-  background-color: @bg;
-  color: @fg;
+  background-color: @abyss_black;
+
+  border-top: 1px solid rgba(129, 161, 193, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+
+  background-image: linear-gradient(
+    to bottom,
+    rgba(129, 161, 193, 0.02),
+    transparent
+  );
 }
 
-/* --- WORKSPACES --- */
 #workspaces {
-  /* border-right: 1px solid @border; */
-   margin-right: 5px;
+  padding-left: 20px;
 }
 
 #workspaces button {
-  color: #555555;
-  padding: 0 10px;
-/*   border-right: 1px solid @border; */
- }
+  color: rgba(240, 244, 248, 0.25);
+  padding: 0 16px;
+  font-size: 11px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 #workspaces button.active {
-  color: @fg;
-/*   background-color: @active; */
- }
+  color: #ffffff;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    @aether_glow 50%,
+    transparent 100%
+  );
+  background-size: 100% 2px;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  text-shadow: 0 0 8px rgba(129, 161, 193, 0.4);
+}
 
 #workspaces button:hover {
-  background-color: @border;
-  color: @bg;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.03);
 }
 
-/* --- CENTER CLOCK --- */
 #clock {
-  padding: 0 15px;
-/*   border-left: 1px solid @border; */
-/*   border-right: 1px solid @border; */
- }
+  color: #ffffff;
+  font-weight: 400;
+  letter-spacing: 4px;
+  padding: 0 25px;
 
-/* --- RIGHT SIDE MODULES --- */
-#custom-vpn,
-#pulseaudio,
-#cpu,
-#memory,
-#tray {
-  padding: 0 12px;
-/*   border-left: 1px solid @border; */
- }
+  text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.9),
+    0 0 12px rgba(129, 161, 193, 0.2);
 
-#custom-vpn.connected {
-  color: @vpn;
+  transition: all 0.4s ease;
 }
 
-#cpu {
-  color: #a0a0a0;
-}
-
-#memory {
-  color: #a0a0a0;
+#clock:hover {
+  text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(129, 161, 193, 0.5);
 }
 
 #pulseaudio {
-  color: @fg;
+  color: #d1d9e1;
+  padding: 0 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  margin: 6px 0;
+  transition: all 0.4s ease;
+}
+
+#pulseaudio:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px @aether_glow;
 }
 
 #tray {
-  padding-right: 10px;
+  padding-right: 25px;
+  padding-left: 15px;
+  opacity: 0.45;
+  transition: all 0.4s ease;
+}
+
+#tray:hover {
+  opacity: 1;
+  -gtk-icon-shadow: 0 0 8px @aether_glow;
 }
 
 tooltip {
-  background-color: @bg;
-  color: @fg;
-  border: 1px solid @border;
+  background: rgba(2, 4, 10, 0.98);
+  font-family: "Spectral", serif;
+  border: 1px solid @aether_glow;
 }
