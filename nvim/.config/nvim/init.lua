@@ -285,7 +285,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- add plugins --
 vim.pack.add({
 	-- appearance
-	"https://github.com/wnkz/monoglow.nvim",
+	"https://github.com/olivercederborg/poimandres.nvim",
 	"https://www.github.com/nvim-lualine/lualine.nvim",
 	"https://www.github.com/nvim-tree/nvim-web-devicons",
 	"https://www.github.com/lewis6991/gitsigns.nvim",
@@ -318,7 +318,7 @@ end
 
 -- install plugins --
 -- appearance
-packadd("monoglow.nvim")
+packadd("poimandres.nvim")
 packadd("lualine.nvim")
 packadd("nvim-web-devicons")
 packadd("gitsigns.nvim")
@@ -746,7 +746,7 @@ vim.lsp.enable({
 
 vim.opt.termguicolors = true
 
-vim.cmd("colorscheme monoglow-void")
+vim.cmd("colorscheme poimandres")
 
 local function set_transparent() -- set UI component to transparent
 	local groups = {

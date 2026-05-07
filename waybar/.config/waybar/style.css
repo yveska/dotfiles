@@ -20,20 +20,20 @@ window#waybar {
 
 /* --- WORKSPACES --- */
 #workspaces {
-  border-right: 1px solid @border;
-  margin-right: 5px;
+  /* border-right: 1px solid @border; */
+   margin-right: 5px;
 }
 
 #workspaces button {
   color: #555555;
   padding: 0 10px;
-  border-right: 1px solid @border;
-}
+/*   border-right: 1px solid @border; */
+ }
 
 #workspaces button.active {
   color: @fg;
-  background-color: @active;
-}
+/*   background-color: @active; */
+ }
 
 #workspaces button:hover {
   background-color: @border;
@@ -43,9 +43,9 @@ window#waybar {
 /* --- CENTER CLOCK --- */
 #clock {
   padding: 0 15px;
-  border-left: 1px solid @border;
-  border-right: 1px solid @border;
-}
+/*   border-left: 1px solid @border; */
+/*   border-right: 1px solid @border; */
+ }
 
 /* --- RIGHT SIDE MODULES --- */
 #custom-vpn,
@@ -54,8 +54,8 @@ window#waybar {
 #memory,
 #tray {
   padding: 0 12px;
-  border-left: 1px solid @border;
-}
+/*   border-left: 1px solid @border; */
+ }
 
 #custom-vpn.connected {
   color: @vpn;
