@@ -1,6 +1,3 @@
-/* --- THE GOLDILOCKS ZONE: THE TRANSLUCENT SANCTUARY --- */
-
-/* Balanced at 0.6: Weighted enough for Obsidian, airy enough for the desktop */
 @define-color abyss_black    rgba(2, 4, 10, 0.6);
 @define-color aether_glow    #81a1c1;
 @define-color nova_white     #ffffff;
@@ -15,11 +12,9 @@
 window#waybar {
   background-color: @abyss_black;
 
-  /* THE GHOST HORIZON: A whisper-thin top light */
   border-top: 1px solid rgba(129, 161, 193, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 
-  /* Subtle grounding gradient */
   background-image: linear-gradient(
     to bottom,
     rgba(129, 161, 193, 0.02),
@@ -27,7 +22,6 @@ window#waybar {
   );
 }
 
-/* --- WORKSPACES (RESTORED MINIMAL RHYTHM) --- */
 #workspaces {
   padding-left: 20px;
 }
@@ -35,7 +29,7 @@ window#waybar {
 #workspaces button {
   color: rgba(240, 244, 248, 0.25);
   padding: 0 16px;
-  font-size: 11px; /* Restored to its perfect small scale */
+  font-size: 11px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -52,20 +46,17 @@ window#waybar {
   background-position: center bottom;
   text-shadow: 0 0 8px rgba(129, 161, 193, 0.4);
 }
-
 #workspaces button:hover {
   color: rgba(255, 255, 255, 0.6);
   background: rgba(255, 255, 255, 0.03);
 }
 
-/* --- CLOCK (STATIC ROMAN PERFECTION) --- */
 #clock {
   color: #ffffff;
   font-weight: 400;
-  letter-spacing: 4px; /* Restored to tasteful tracking */
+  letter-spacing: 4px;
   padding: 0 25px;
 
-  /* The Obsidian Etch: Deepened but refined */
   text-shadow:
     1px 1px 2px rgba(0, 0, 0, 0.9),
     0 0 12px rgba(129, 161, 193, 0.2);
@@ -79,11 +70,10 @@ window#waybar {
     0 0 20px rgba(129, 161, 193, 0.5);
 }
 
-/* --- SYSTEM (RESTORED MONOLITHIC WEIGHT) --- */
 #pulseaudio {
   color: #d1d9e1;
   padding: 0 20px;
-  font-size: 13px; /* Restored for visibility */
+  font-size: 13px;
   font-weight: 600;
   border-left: 1px solid rgba(255, 255, 255, 0.06);
   margin: 6px 0;
