@@ -33,6 +33,10 @@
       "rev": "69b7433355664cf76898eb86a12a019f39bd86d1",
       "src": "https://www.github.com/echasnovski/mini.nvim"
     },
+    "monoglow.nvim": {
+      "rev": "a249b1f55bfe9171e2f8aff7acf140f78ca4b2bb",
+      "src": "https://github.com/wnkz/monoglow.nvim"
+    },
     "nvim-colorizer.lua": {
       "rev": "a065833f35a3a7cc3ef137ac88b5381da2ba302e",
       "src": "https://www.github.com/norcalli/nvim-colorizer.lua"
@@ -52,10 +56,6 @@
     "nvim-web-devicons": {
       "rev": "c72328a5494b4502947a022fe69c0c47e53b6aa6",
       "src": "https://www.github.com/nvim-tree/nvim-web-devicons"
-    },
-    "poimandres.nvim": {
-      "rev": "a488957d803943a4201ac3b774913fcafa9e6b3a",
-      "src": "https://github.com/olivercederborg/poimandres.nvim"
     },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",

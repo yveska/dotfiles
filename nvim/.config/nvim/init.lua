@@ -285,7 +285,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- add plugins --
 vim.pack.add({
 	-- appearance
-	"https://github.com/olivercederborg/poimandres.nvim",
+	"https://github.com/wnkz/monoglow.nvim",
 	"https://www.github.com/nvim-lualine/lualine.nvim",
 	"https://www.github.com/nvim-tree/nvim-web-devicons",
 	"https://www.github.com/lewis6991/gitsigns.nvim",
@@ -318,7 +318,7 @@ end
 
 -- install plugins --
 -- appearance
-packadd("poimandres.nvim")
+packadd("monoglow.nvim")
 packadd("lualine.nvim")
 packadd("nvim-web-devicons")
 packadd("gitsigns.nvim")
@@ -746,7 +746,7 @@ vim.lsp.enable({
 
 vim.opt.termguicolors = true
 
-vim.cmd("colorscheme poimandres")
+vim.cmd("colorscheme monoglow")
 
 local function set_transparent() -- set UI component to transparent
 	local groups = {
@@ -862,4 +862,21 @@ require("colorizer").setup({
 	"*", -- Highlight all files, but customize some others.
 	"!vim", -- Exclude vim from highlighting.
 	-- Exclusion Only makes sense if '*' is specified!
+})
+
+-- Kitty terminal padding fix
+vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
+	callback = function()
+		local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+		if not normal.bg then
+			return
+		end
+		io.write(string.format("\027]11;#%06x\027\\", normal.bg))
+	end,
+})
+
+vim.api.nvim_create_autocmd("UILeave", {
+	callback = function()
+		io.write("\027]111\027\\")
+	end,
 })

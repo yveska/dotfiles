@@ -1,23 +1,21 @@
-@define-color abyss_black    rgba(2, 4, 10, 0.6);
-@define-color aether_glow    #81a1c1;
-@define-color nova_white     #ffffff;
+@define-color abyss_black    rgba(6, 6, 6, 0.7);
+@define-color celestial_slate #7d7d8d;
+@define-color nova_white      #ffffff;
 
 * {
   border: none;
   font-family: "Spectral", serif;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400; /* Lightened to match Spectral's museum feel */
 }
 
 window#waybar {
   background-color: @abyss_black;
-
-  border-top: 1px solid rgba(129, 161, 193, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  /* Substrate texturing */
   background-image: linear-gradient(
     to bottom,
-    rgba(129, 161, 193, 0.02),
+    rgba(255, 255, 255, 0.01),
     transparent
   );
 }
@@ -27,78 +25,74 @@ window#waybar {
 }
 
 #workspaces button {
-  color: rgba(240, 244, 248, 0.25);
+  color: rgba(209, 209, 209, 0.55);
   padding: 0 16px;
   font-size: 11px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #workspaces button.active {
-  color: #ffffff;
+  color: @nova_white;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    @aether_glow 50%,
+    @celestial_slate 50%,
     transparent 100%
   );
-  background-size: 100% 2px;
+  background-size: 100% 1px; /* Sharper, more minimal line */
   background-repeat: no-repeat;
   background-position: center bottom;
-  text-shadow: 0 0 8px rgba(129, 161, 193, 0.4);
+  text-shadow: 0 0 10px rgba(125, 125, 141, 0.4);
 }
+
 #workspaces button:hover {
   color: rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 #clock {
-  color: #ffffff;
-  font-weight: 400;
-  letter-spacing: 4px;
+  color: @nova_white;
+  font-weight: 300;
+  letter-spacing: 5px; /* Increased for "Optical Pacing" */
   padding: 0 25px;
-
-  text-shadow:
-    1px 1px 2px rgba(0, 0, 0, 0.9),
-    0 0 12px rgba(129, 161, 193, 0.2);
-
-  transition: all 0.4s ease;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #clock:hover {
-  text-shadow:
-    1px 1px 2px rgba(0, 0, 0, 0.9),
-    0 0 20px rgba(129, 161, 193, 0.5);
+  color: @celestial_slate;
+  text-shadow: 0 0 20px rgba(125, 125, 141, 0.3);
 }
 
 #pulseaudio {
-  color: #d1d9e1;
+  color: #a8a8a8;
   padding: 0 20px;
-  font-size: 13px;
-  font-weight: 600;
-  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 14px;
+  font-weight: 400;
+  border-left: 1px solid rgba(255, 255, 255, 0.04);
   margin: 6px 0;
-  transition: all 0.4s ease;
+  transition: all 0.6s ease;
 }
 
 #pulseaudio:hover {
-  color: #ffffff;
-  text-shadow: 0 0 10px @aether_glow;
+  color: @nova_white;
+  text-shadow: 0 0 8px @celestial_slate;
 }
 
 #tray {
   padding-right: 25px;
   padding-left: 15px;
-  opacity: 0.45;
-  transition: all 0.4s ease;
+  opacity: 0.5;
+  transition: all 0.8s ease;
 }
 
 #tray:hover {
-  opacity: 1;
-  -gtk-icon-shadow: 0 0 8px @aether_glow;
+  opacity: 0.8;
+  -gtk-icon-shadow: 0 0 10px @celestial_slate;
 }
 
 tooltip {
-  background: rgba(2, 4, 10, 0.98);
+  background: rgba(10, 10, 10, 0.98);
   font-family: "Spectral", serif;
-  border: 1px solid @aether_glow;
+  border: 1px solid rgba(125, 125, 141, 0.2);
 }

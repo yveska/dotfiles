@@ -1,6 +1,37 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export BROWSER:zen\x2edesktop
+SETUVAR --export XDG_CONFIG_HOME:/home/adam/\x2econfig
 SETUVAR __fish_initialized:4300
 SETUVAR __fish_webconfig_theme_notification:set\x2dtheme\x2dv1\x2d\x236
 SETUVAR _fisher_upgraded_to_4_4:\x1d
+SETUVAR fish_color_autosuggestion:4e4e4e
+SETUVAR fish_color_cancel:\x2dr
+SETUVAR fish_color_command:ffffff\x1e\x2d\x2dbold
+SETUVAR fish_color_comment:585858\x1e\x2d\x2ditalics
+SETUVAR fish_color_cwd:green
+SETUVAR fish_color_cwd_root:red
+SETUVAR fish_color_end:707070
+SETUVAR fish_color_error:d75f5f\x1e\x2d\x2dbold
+SETUVAR fish_color_escape:8a8a8a
+SETUVAR fish_color_history_current:\x2d\x2dbold
+SETUVAR fish_color_host:\x2d\x2dreset
+SETUVAR fish_color_host_remote:yellow
+SETUVAR fish_color_keyword:d1d1d1
+SETUVAR fish_color_normal:\x2d\x2dreset
+SETUVAR fish_color_operator:cfcfcf
+SETUVAR fish_color_option:9a9a9a
+SETUVAR fish_color_param:c0c0c0
+SETUVAR fish_color_quote:8a8a8a
+SETUVAR fish_color_redirection:a0a0a0
+SETUVAR fish_color_search_match:white\x1e\x2d\x2dbackground\x3dbrblack\x1e\x2d\x2dbold
+SETUVAR fish_color_selection:\x2d\x2dbackground\x3d2a2a2a
+SETUVAR fish_color_status:red
+SETUVAR fish_color_user:brgreen
+SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR fish_pager_color_completion:\x2d\x2dreset
+SETUVAR fish_pager_color_description:B3A06D\x1eyellow
+SETUVAR fish_pager_color_prefix:\x2d\x2dbold\x1e\x2d\x2dunderline
+SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan\x1e\x2d\x2dbold
+SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3dbrblack
 SETUVAR fish_user_paths:/home/adam/\x2econfig/emacs/bin
