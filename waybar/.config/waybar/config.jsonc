@@ -29,6 +29,7 @@
 
   "pulseaudio": {
     "format": "{volume}",
+    "format-muted": "--",
     "tooltip": false
   },
 

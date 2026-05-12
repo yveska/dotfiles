@@ -6,13 +6,12 @@
   border: none;
   font-family: "Spectral", serif;
   font-size: 13px;
-  font-weight: 400; /* Lightened to match Spectral's museum feel */
+  font-weight: 400;
 }
 
 window#waybar {
   background-color: @abyss_black;
   border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-  /* Substrate texturing */
   background-image: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.01),
@@ -39,7 +38,7 @@ window#waybar {
     @celestial_slate 50%,
     transparent 100%
   );
-  background-size: 100% 1px; /* Sharper, more minimal line */
+  background-size: 100% 1px;
   background-repeat: no-repeat;
   background-position: center bottom;
   text-shadow: 0 0 10px rgba(125, 125, 141, 0.4);
@@ -53,7 +52,7 @@ window#waybar {
 #clock {
   color: @nova_white;
   font-weight: 300;
-  letter-spacing: 5px; /* Increased for "Optical Pacing" */
+  letter-spacing: 5px;
   padding: 0 25px;
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -77,6 +76,12 @@ window#waybar {
 #pulseaudio:hover {
   color: @nova_white;
   text-shadow: 0 0 8px @celestial_slate;
+}
+
+#pulseaudio.muted {
+  color: @celestial_slate;
+  opacity: 0.9;
+  text-shadow: none;
 }
 
 #tray {

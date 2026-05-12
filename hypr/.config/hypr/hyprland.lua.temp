@@ -1,0 +1,242 @@
+--- Hyprland 0.55 Lua Config ---
+
+local mod = "SUPER"
+local alt = "ALT"
+
+-- Monitors --
+hl.monitor({
+	output = "DP-2",
+	mode = "1920x1080@165",
+	position = "1920x0",
+	scale = 1.00,
+})
+
+-- Environment Variables --
+hl.env("XCURSOR_SIZE", "24")
+hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("WEBKIT_DISABLE_DMABUF_RENDERER", "1")
+hl.env("TERMINAL", "kitty")
+
+-- Autostart --
+hl.on("hyprland.start", function()
+	hl.exec_cmd("systemctl --user start hyprpolkitagent")
+	hl.exec_cmd("nm-applet")
+	hl.exec_cmd("waybar")
+	hl.exec_cmd("vicinae server")
+	hl.exec_cmd("awww-daemon")
+	hl.exec_cmd("wl-paste --type text --watch cliphist store")
+	hl.exec_cmd("wl-paste --type image --watch cliphist store")
+end)
+
+-- Core Config (Look and Feel) --
+hl.config({
+	input = {
+		kb_layout = "us",
+		kb_options = "grp:alt_shift_toggle,ctrl:nocaps",
+		follow_mouse = 1,
+		sensitivity = -0.7,
+		touchpad = {
+			natural_scroll = false,
+		},
+	},
+
+	cursor = {
+		no_hardware_cursors = true,
+	},
+
+	general = {
+		gaps_in = 2,
+		gaps_out = 5,
+		border_size = 1,
+		col = {
+			active_border = "rgba(05070a66)",
+			inactive_border = "rgb(2a2a2d)",
+		},
+		resize_on_border = true,
+		layout = "dwindle",
+		allow_tearing = false,
+	},
+
+	decoration = {
+		rounding = 12,
+		active_opacity = 0.99,
+		inactive_opacity = 0.96,
+
+		shadow = {
+			enabled = false,
+			range = 20,
+			render_power = 3,
+			color = "rgb(3C3B3E)",
+		},
+
+		blur = {
+			enabled = true,
+			size = 6,
+			passes = 3,
+			new_optimizations = true,
+			xray = false,
+			ignore_opacity = true,
+			special = false,
+			popups = true,
+			input_methods = true,
+			input_methods_ignorealpha = 0.8,
+			brightness = 1.1,
+			contrast = 1.2,
+			vibrancy = 0.6,
+		},
+
+		animations = {
+			enabled = true,
+		},
+	},
+
+	dwindle = {
+		preserve_split = true,
+	},
+
+	master = {
+		new_status = "master",
+	},
+
+	misc = {
+		focus_on_activate = true,
+		disable_hyprland_logo = true,
+		disable_splash_rendering = true,
+		force_default_wallpaper = 0,
+		animate_manual_resizes = true,
+	},
+})
+
+-- Animations --
+hl.curve("zenEase", { type = "bezier", points = { { 0.25, 1 }, { 0.5, 1 } } })
+hl.curve("sluggishMove", { type = "bezier", points = { { 0.4, 0 }, { 0.2, 1 } } })
+hl.curve("mistyFade", { type = "bezier", points = { { 0.33, 0 }, { 0.67, 1 } } })
+hl.curve("stillLinear", { type = "bezier", points = { { 0, 0 }, { 1, 1 } } })
+
+hl.animation({ leaf = "global", enabled = true, speed = 1.8, bezier = "zenEase" })
+
+-- Windows
+hl.animation({ leaf = "windows", enabled = true, speed = 1.6, bezier = "sluggishMove" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 1.9, bezier = "zenEase", style = "popin 100%" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 1.6, bezier = "stillLinear", style = "popin 100%" })
+
+-- Fades and Layers
+hl.animation({ leaf = "fadeIn", enabled = true, speed = 1.8, bezier = "mistyFade" })
+hl.animation({ leaf = "fadeOut", enabled = true, speed = 1.4, bezier = "stillLinear" })
+hl.animation({ leaf = "fade", enabled = true, speed = 1.8, bezier = "mistyFade" })
+hl.animation({ leaf = "layers", enabled = true, speed = 1.9, bezier = "zenEase" })
+hl.animation({ leaf = "layersIn", enabled = true, speed = 1.8, bezier = "zenEase", style = "fade" })
+hl.animation({ leaf = "layersOut", enabled = true, speed = 1.4, bezier = "stillLinear", style = "fade" })
+
+-- Borders and Workspaces
+hl.animation({ leaf = "border", enabled = true, speed = 2.2, bezier = "zenEase" })
+hl.animation({ leaf = "workspaces", enabled = false, speed = 0, bezier = "default" })
+
+--- Keybindings ---
+
+-- Apps
+hl.bind(mod .. " + T", hl.dsp.exec_cmd("kitty"))
+hl.bind(mod .. " + E", hl.dsp.exec_cmd("dolphin"))
+hl.bind(mod .. " + A", hl.dsp.exec_cmd("vicinae toggle"))
+hl.bind(mod .. " + B", hl.dsp.exec_cmd("zen-browser"))
+hl.bind(mod .. " + O", hl.dsp.exec_cmd("obsidian"))
+hl.bind(mod .. " + S", hl.dsp.exec_cmd("kitty -e rmpc"))
+hl.bind(mod .. " + P", hl.dsp.exec_cmd("sioyek"))
+hl.bind(mod .. " + R", hl.dsp.exec_cmd("readest:"))
+hl.bind(mod .. " + SHIFT + T", hl.dsp.exec_cmd("kitty -e btop"))
+
+-- Shaders
+hl.bind(alt .. " + M", hl.dsp.exec_cmd("hyprshade toggle main"))
+hl.bind(alt .. " + R", hl.dsp.exec_cmd("hyprshade toggle reading_mode"))
+hl.bind(alt .. " + N", hl.dsp.exec_cmd("hyprshade toggle night"))
+
+-- Screenshots
+hl.bind(mod .. " + Print", hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
+hl.bind(
+	mod .. " + SHIFT + Print",
+	hl.dsp.exec_cmd("grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png")
+)
+
+-- Clipboard
+hl.bind(mod .. " + V", hl.dsp.exec_cmd("vicinae vicinae://launch/clipboard/history"))
+
+-- Waybar toggle
+hl.bind(mod .. " + W", hl.dsp.exec_cmd("pkill waybar || waybar"))
+hl.bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("pkill waybar && exec waybar"))
+
+-- Window Actions
+hl.bind(mod .. " + Q", hl.dsp.window.close())
+hl.bind(mod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
+hl.bind(mod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
+
+-- Exit Hyprland
+hl.bind(mod .. " + SHIFT + M", hl.dsp.exit())
+
+-- Switch Workspaces
+for i = 1, 9 do
+	local key = tostring(i % 9)
+	hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = i }))
+	hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+end
+
+-- Vim Window Navigation
+hl.bind(mod .. " + h", hl.dsp.focus({ direction = "left" }))
+hl.bind(mod .. " + l", hl.dsp.focus({ direction = "right" }))
+hl.bind(mod .. " + k", hl.dsp.focus({ direction = "up" }))
+hl.bind(mod .. " + j", hl.dsp.focus({ direction = "down" }))
+
+-- Vim Window Swapping
+hl.bind(mod .. " + SHIFT + h", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mod .. " + SHIFT + l", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mod .. " + SHIFT + k", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mod .. " + SHIFT + j", hl.dsp.window.move({ direction = "down" }))
+
+-- Mouse Actions
+hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+-- Media Keys
+hl.bind(
+	"XF86AudioRaiseVolume",
+	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86AudioLowerVolume",
+	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86AudioMute",
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86AudioMicMute",
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
+	{ locked = true, repeating = true }
+)
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+
+--- Window and Layer Rules ---
+
+hl.layer_rule({
+	name = "vicinae-blur",
+	match = { namespace = "^vicinae$" },
+	blur = true,
+})
+
+hl.layer_rule({
+	name = "vicinae-alpha",
+	match = { namespace = "^vicinae$" },
+	ignore_alpha = 0,
+})
+
+hl.layer_rule({
+	name = "vicinae-noanim",
+	match = { namespace = "^vicinae$" },
+	no_anim = true,
+})
