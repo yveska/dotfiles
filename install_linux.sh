@@ -4,7 +4,7 @@
 
 DOTFILES_DIR="$HOME/dotfiles"
 
-CONFIGS=(bash doom dunst fastfetch fish gtk-3.0 gtk-4.0 hypr icons kitty rmpc nvim starship themes waybar yazi sioyek)
+CONFIGS=(doom dunst fastfetch fish gtk-3.0 gtk-4.0 hypr icons kitty rmpc nvim starship themes waybar yazi sioyek)
 
 SERVICES=(NetworkManager bluetooth sddm)
 
@@ -30,7 +30,7 @@ FONTS=(inter-font otf-atkinson-hyperlegible ttf-jetbrains-mono-nerd ttf-firacode
 
 # AUR Packages
 
-AUR_PKGS=(hyprshade-git zotero-bin sioyek-dev localsend-bin vicinae-bin zen-browser-bin)
+AUR_PKGS=(zotero-bin sioyek-dev localsend-bin vicinae-bin zen-browser-bin)
 
 set -e
 echo "󰣇 Starting Full System Deployment..."
@@ -61,19 +61,10 @@ fi
 # --- 4. DOTFILES DEPLOYMENT (STOW) ---
 echo "Step 3: Symlinking Dotfiles..."
 if [ -d "$DOTFILES_DIR" ]; then
-	# Instead of deleting the whole fish folder, we only remove
-	# specific files that frequently conflict with stow.
 	[ -f "$HOME/.bashrc" ] && rm "$HOME/.bashrc"
-
-	# Remove existing fish config only if it's a real directory/file
-	# to let stow create the symlink properly.
-	if [ -d "$HOME/.config/fish" ] || [ -f "$HOME/.config/fish" ]; then
-		rm -rf "$HOME/.config/fish"
-	fi
 
 	cd "$DOTFILES_DIR"
 	for config in "${CONFIGS[@]}"; do
-		# -R (Restow) is good, but we ensure the path is clear first
 		stow -R "$config"
 		echo "  ✔ Stowed $config"
 	done
@@ -110,13 +101,6 @@ echo "Step 5: Initializing Doom Emacs & Neovim..."
 if [ ! -d "$HOME/.config/emacs" ]; then
 	git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 	~/.config/emacs/bin/doom install
-fi
-
-# --- 6. SHELL INITIALIZATION ---
-# Change the default shell to fish for the current user
-if [ "$SHELL" != "/usr/bin/fish" ]; then
-	echo "Changing default shell to fish..."
-	sudo chsh -s /usr/bin/fish "$USER"
 fi
 
 # --- 7. SERVICES ---
