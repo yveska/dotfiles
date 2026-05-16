@@ -2,6 +2,7 @@
 
 local mod = "SUPER"
 local alt = "ALT"
+local shader = require("shader")
 
 -- Monitors --
 hl.monitor({
@@ -24,6 +25,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("vicinae server")
 	hl.exec_cmd("awww-daemon")
+	shader.toggle("Main")
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")
 end)
@@ -45,8 +47,8 @@ hl.config({
 	},
 
 	general = {
-		gaps_in = 2,
-		gaps_out = 5,
+		gaps_in = 0,
+		gaps_out = 0,
 		border_size = 1,
 		col = {
 			active_border = "rgba(05070a66)",
@@ -58,7 +60,7 @@ hl.config({
 	},
 
 	decoration = {
-		rounding = 12,
+		rounding = 0,
 		active_opacity = 0.99,
 		inactive_opacity = 0.96,
 
@@ -84,10 +86,6 @@ hl.config({
 			contrast = 1.2,
 			vibrancy = 0.6,
 		},
-
-		animations = {
-			enabled = true,
-		},
 	},
 
 	dwindle = {
@@ -108,28 +106,27 @@ hl.config({
 })
 
 -- Animations --
-hl.curve("zenEase", { type = "bezier", points = { { 0.25, 1 }, { 0.5, 1 } } })
-hl.curve("sluggishMove", { type = "bezier", points = { { 0.4, 0 }, { 0.2, 1 } } })
-hl.curve("mistyFade", { type = "bezier", points = { { 0.33, 0 }, { 0.67, 1 } } })
-hl.curve("stillLinear", { type = "bezier", points = { { 0, 0 }, { 1, 1 } } })
+hl.curve("easeOutQuint", { type = "bezier", points = { { 0.23, 1 }, { 0.32, 1 } } })
+hl.curve("easeInOutCubic", { type = "bezier", points = { { 0.65, 0.05 }, { 0.36, 1 } } })
+hl.curve("linear", { type = "bezier", points = { { 0, 0 }, { 1, 1 } } })
+hl.curve("almostLinear", { type = "bezier", points = { { 0.5, 0.5 }, { 0.75, 1.0 } } })
+hl.curve("quick", { type = "bezier", points = { { 0.15, 0 }, { 0.1, 1 } } })
 
-hl.animation({ leaf = "global", enabled = true, speed = 1.8, bezier = "zenEase" })
+hl.animation({ leaf = "global", enabled = true, speed = 10.0, bezier = "default" })
+hl.animation({ leaf = "border", enabled = true, speed = 5.39, bezier = "easeOutQuint" })
 
--- Windows
-hl.animation({ leaf = "windows", enabled = true, speed = 1.6, bezier = "sluggishMove" })
-hl.animation({ leaf = "windowsIn", enabled = true, speed = 1.9, bezier = "zenEase", style = "popin 100%" })
-hl.animation({ leaf = "windowsOut", enabled = true, speed = 1.6, bezier = "stillLinear", style = "popin 100%" })
+hl.animation({ leaf = "windows", enabled = true, speed = 4.79, bezier = "easeOutQuint" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 4.1, bezier = "easeOutQuint", style = "popin 87%" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 1.49, bezier = "linear", style = "popin 87%" })
 
--- Fades and Layers
-hl.animation({ leaf = "fadeIn", enabled = true, speed = 1.8, bezier = "mistyFade" })
-hl.animation({ leaf = "fadeOut", enabled = true, speed = 1.4, bezier = "stillLinear" })
-hl.animation({ leaf = "fade", enabled = true, speed = 1.8, bezier = "mistyFade" })
-hl.animation({ leaf = "layers", enabled = true, speed = 1.9, bezier = "zenEase" })
-hl.animation({ leaf = "layersIn", enabled = true, speed = 1.8, bezier = "zenEase", style = "fade" })
-hl.animation({ leaf = "layersOut", enabled = true, speed = 1.4, bezier = "stillLinear", style = "fade" })
+hl.animation({ leaf = "fadeIn", enabled = true, speed = 1.73, bezier = "almostLinear" })
+hl.animation({ leaf = "fadeOut", enabled = true, speed = 1.46, bezier = "almostLinear" })
+hl.animation({ leaf = "fade", enabled = true, speed = 3.03, bezier = "quick" })
 
--- Borders and Workspaces
-hl.animation({ leaf = "border", enabled = true, speed = 2.2, bezier = "zenEase" })
+hl.animation({ leaf = "layers", enabled = true, speed = 3.81, bezier = "easeOutQuint" })
+hl.animation({ leaf = "layersIn", enabled = true, speed = 4.0, bezier = "easeOutQuint", style = "fade" })
+hl.animation({ leaf = "layersOut", enabled = true, speed = 1.5, bezier = "linear", style = "fade" })
+
 hl.animation({ leaf = "workspaces", enabled = false, speed = 0, bezier = "default" })
 
 --- Keybindings ---
@@ -142,13 +139,8 @@ hl.bind(mod .. " + B", hl.dsp.exec_cmd("zen-browser"))
 hl.bind(mod .. " + O", hl.dsp.exec_cmd("obsidian"))
 hl.bind(mod .. " + S", hl.dsp.exec_cmd("kitty -e rmpc"))
 hl.bind(mod .. " + P", hl.dsp.exec_cmd("sioyek"))
-hl.bind(mod .. " + R", hl.dsp.exec_cmd("readest:"))
+hl.bind(mod .. " + R", hl.dsp.exec_cmd("readest"))
 hl.bind(mod .. " + SHIFT + T", hl.dsp.exec_cmd("kitty -e btop"))
-
--- Shaders
-hl.bind(alt .. " + M", hl.dsp.exec_cmd("hyprshade toggle main"))
-hl.bind(alt .. " + R", hl.dsp.exec_cmd("hyprshade toggle reading_mode"))
-hl.bind(alt .. " + N", hl.dsp.exec_cmd("hyprshade toggle night"))
 
 -- Screenshots
 hl.bind(mod .. " + Print", hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))

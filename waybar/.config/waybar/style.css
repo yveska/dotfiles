@@ -1,6 +1,6 @@
-@define-color abyss_black    rgba(6, 6, 6, 0.7);
-@define-color celestial_slate #7d7d8d;
-@define-color nova_white      #ffffff;
+@define-color black    rgba(6, 6, 6, 0.7);
+@define-color slate #7d7d8d;
+@define-color white      #ffffff;
 
 * {
   border: none;
@@ -10,7 +10,7 @@
 }
 
 window#waybar {
-  background-color: @abyss_black;
+  background-color: @black;
   border-bottom: 1px solid rgba(255, 255, 255, 0.02);
   background-image: linear-gradient(
     to bottom,
@@ -31,11 +31,11 @@ window#waybar {
 }
 
 #workspaces button.active {
-  color: @nova_white;
+  color: @white;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    @celestial_slate 50%,
+    @slate 50%,
     transparent 100%
   );
   background-size: 100% 1px;
@@ -50,7 +50,7 @@ window#waybar {
 }
 
 #clock {
-  color: @nova_white;
+  color: @white;
   font-weight: 300;
   letter-spacing: 5px;
   padding: 0 25px;
@@ -59,7 +59,7 @@ window#waybar {
 }
 
 #clock:hover {
-  color: @celestial_slate;
+  color: @slate;
   text-shadow: 0 0 20px rgba(125, 125, 141, 0.3);
 }
 
@@ -74,12 +74,12 @@ window#waybar {
 }
 
 #pulseaudio:hover {
-  color: @nova_white;
-  text-shadow: 0 0 8px @celestial_slate;
+  color: @white;
+  text-shadow: 0 0 8px @slate;
 }
 
 #pulseaudio.muted {
-  color: @celestial_slate;
+  color: @slate;
   opacity: 0.9;
   text-shadow: none;
 }
@@ -93,7 +93,7 @@ window#waybar {
 
 #tray:hover {
   opacity: 0.8;
-  -gtk-icon-shadow: 0 0 10px @celestial_slate;
+  -gtk-icon-shadow: 0 0 10px @slate;
 }
 
 tooltip {
