@@ -13,3 +13,4 @@
 
 ## Credit
 - Shader.lua in ~/.config/hypr and glsl shaders in ~/.config/hypr/shaders/ were from [Snes19xx](https://github.com/snes19xx/surface-dots).
+- SDDM lockscreen is from [qylock](https://github.com/Darkkal44/qylock/).
