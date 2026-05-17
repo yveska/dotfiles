@@ -137,9 +137,7 @@ hl.bind(mod .. " + E", hl.dsp.exec_cmd("dolphin"))
 hl.bind(mod .. " + A", hl.dsp.exec_cmd("vicinae toggle"))
 hl.bind(mod .. " + B", hl.dsp.exec_cmd("zen-browser"))
 hl.bind(mod .. " + O", hl.dsp.exec_cmd("obsidian"))
-hl.bind(mod .. " + S", hl.dsp.exec_cmd("kitty -e rmpc"))
 hl.bind(mod .. " + P", hl.dsp.exec_cmd("sioyek"))
-hl.bind(mod .. " + R", hl.dsp.exec_cmd("readest"))
 hl.bind(mod .. " + SHIFT + T", hl.dsp.exec_cmd("kitty -e btop"))
 
 -- Screenshots
