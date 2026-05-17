@@ -77,7 +77,7 @@ chmod +x "$DOTFILES_DIR"
 
 # --- 5. SDDM THEME SETUP ---
 echo "Step 4: Symlinking SDDM Theme with Stow..."
-THEME_NAME="nier-automata"
+THEME_NAME="orbital"
 
 if [ -d "$DOTFILES_DIR/sddm-theme" ]; then
 	# 1. Create the system directory if it doesn't exist

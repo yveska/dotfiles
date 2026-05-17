@@ -1,6 +1,6 @@
 [SddmGreeterTheme]
-Name=nier-automata
-Description=nier-automata Qylock Theme
+Name=clockwork
+Description=Orbital - Clockwork
 Author=Darkkal44
 Type=sddm-theme
 MainScript=Main.qml
